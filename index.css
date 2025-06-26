@@ -1971,5 +1971,6 @@ th {
 
         #cookie-popup button {
                 width: auto;
+                min-width: 120px;
         }
 }
