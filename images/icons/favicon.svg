@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" rx="6" fill="#1a365d"/>
+  <text x="16" y="18" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat" font-weight="700" font-size="16">
+    <tspan fill="white">F</tspan><tspan fill="#3B82F6">O</tspan>
+  </text>
+</svg> 

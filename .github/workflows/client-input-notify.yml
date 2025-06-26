@@ -1,0 +1,95 @@
+name: Client Input Folder Change Notification
+
+on:
+  push:
+    branches: [ main, master ]  # Adjust branches as needed
+    paths:
+      - 'client-input/**'       # Only trigger when files in client-input/ folder change
+
+jobs:
+  notify-client-input-changes:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 2  # Fetch last 2 commits to compare changes
+    
+    - name: Get changed files in client-input
+      id: changed-files
+      run: |
+        # Get list of changed files in the push
+        CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
+        echo "All changed files:"
+        echo "$CHANGED_FILES"
+        
+        # Filter for client-input folder changes
+        CLIENT_INPUT_CHANGES=$(echo "$CHANGED_FILES" | grep '^client-input/' || true)
+        
+        if [ -n "$CLIENT_INPUT_CHANGES" ]; then
+          echo "found_changes=true" >> $GITHUB_OUTPUT
+          echo "changed_files<<EOF" >> $GITHUB_OUTPUT
+          echo "$CLIENT_INPUT_CHANGES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+          # Count files
+          FILE_COUNT=$(echo "$CLIENT_INPUT_CHANGES" | wc -l)
+          echo "file_count=$FILE_COUNT" >> $GITHUB_OUTPUT
+        else
+          echo "found_changes=false" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Send email notification
+      if: steps.changed-files.outputs.found_changes == 'true'
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        secure: false
+        username: ${{ secrets.GMAIL_USERNAME }}
+        password: ${{ secrets.GMAIL_APP_PASSWORD }}
+        subject: "🔔 Client Input Folder Updated - ${{ github.repository }}"
+        to: ${{ secrets.EMAIL_TO }}
+        from: ${{ secrets.GMAIL_USERNAME }}
+        
+        html_body: |
+          <h2>📁 Client Input Folder Changes Detected</h2>
+          
+          <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0;">
+            <p><strong>📦 Repository:</strong> ${{ github.repository }}</p>
+            <p><strong>🌿 Branch:</strong> ${{ github.ref_name }}</p>
+            <p><strong>👤 Author:</strong> ${{ github.actor }}</p>
+            <p><strong>📅 Time:</strong> ${{ github.event.head_commit.timestamp }}</p>
+          </div>
+          
+          <h3>💬 Commit Message:</h3>
+          <div style="background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin: 10px 0;">
+            ${{ github.event.head_commit.message }}
+          </div>
+          
+          <h3>📄 Changed Files (${{ steps.changed-files.outputs.file_count }} files):</h3>
+          <div style="background-color: #f8f9fa; padding: 10px; border-radius: 5px;">
+            <pre style="margin: 0; font-family: 'Courier New', monospace;">${{ steps.changed-files.outputs.changed_files }}</pre>
+          </div>
+          
+          <h3>🔗 Quick Links:</h3>
+          <div style="margin: 15px 0;">
+            <a href="${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}" 
+               style="background-color: #0366d6; color: white; padding: 8px 12px; text-decoration: none; border-radius: 4px; margin-right: 10px;">
+              📝 View Commit
+            </a>
+            <a href="${{ github.server_url }}/${{ github.repository }}/tree/${{ github.ref_name }}/client-input" 
+               style="background-color: #28a745; color: white; padding: 8px 12px; text-decoration: none; border-radius: 4px; margin-right: 10px;">
+              📂 View client-input Folder
+            </a>
+            <a href="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" 
+               style="background-color: #6f42c1; color: white; padding: 8px 12px; text-decoration: none; border-radius: 4px;">
+              ⚙️ View Workflow
+            </a>
+          </div>
+          
+          <hr style="margin: 20px 0;">
+          <p style="color: #6a737d; font-size: 14px;">
+            <em>🤖 This notification was automatically triggered because files in the <strong>client-input/</strong> folder were modified.</em>
+          </p>
