@@ -34,4 +34,8 @@ out/
 
 # OS files
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# Prevent sensitive files from being committed
+contact-form.js 
+.github/workflows
