@@ -38,4 +38,7 @@ Thumbs.db
 
 # Prevent sensitive files from being committed
 contact-form.js 
-.github/workflows
+.github/workflowsreports/*.json
+
+# Reports
+/Reports

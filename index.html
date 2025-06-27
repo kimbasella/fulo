@@ -50,7 +50,7 @@
             justify-content: center;
             padding-top: 5rem;
             text-align: center;
-            background-image: url('images/backgrounds/tel-aviv-night.webp');
+            /* background-image: url('images/backgrounds/tel-aviv-night.webp'); */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -63,8 +63,9 @@
     </style>
 
     <!-- Preload Critical Resources -->
-    <link rel="preload" href="images/backgrounds/tel-aviv-night.webp" as="image" fetchpriority="high">
-    <link rel="preload" href="images/profiles/nadav-profile.webp" as="image" fetchpriority="high">
+    <link rel="preload" as="image" href="images/backgrounds/tel-aviv-night-800px.webp" fetchpriority="high">
+    <link rel="preload" href="fonts/montserrat-v30-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/montserrat-v30-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/images/icons/favicon.svg">
@@ -101,11 +102,23 @@
     <!-- Load Tailwind -->
 
     <!-- Styles -->
-    <link rel="stylesheet" href="index.min.css">
+    <link rel="stylesheet" href="index.min.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="index.min.css">
+    </noscript>
 
     <!-- reCAPTCHA v3 -->
-    <script src="https://www.google.com/recaptcha/api.js?render=6LcEFmYrAAAAAEiA7b5PxpXHcpgWpO5P9HX8ZLVN" async
-        defer></script>
+    <script>
+        function loadRecaptcha() {
+            const script = document.createElement('script');
+            script.src = 'https://www.google.com/recaptcha/api.js';
+            script.async = true;
+            document.head.appendChild(script);
+        }
+
+        // Load on user interaction
+        document.addEventListener('click', loadRecaptcha, { once: true });
+    </script>
 
     <!-- Schema.org -->
     <script type="application/ld+json">
@@ -135,7 +148,7 @@
     </script>
 
     <!-- Google Analytics (GA4) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KGNMBV51TM"></script>
+    <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-KGNMBV51TM"></script>
     <script>
         // Initialize dataLayer
         window.dataLayer = window.dataLayer || [];
@@ -215,9 +228,15 @@
 
             <section id="home" role="region" aria-label="Home"
                 class="hero relative min-h-screen flex items-center justify-center text-white pt-20">
-                <img src="images/backgrounds/tel-aviv-night-1920px.webp" alt="Tel Aviv Night Panorama Hero Image"
-                    class="absolute inset-0 w-full h-full object-cover z-0"
+                <picture class="absolute inset-0 w-full h-full object-cover z-0"
                     style="pointer-events:none; user-select:none;" aria-hidden="true">
+                    <source media="(min-width: 1281px)" srcset="images/backgrounds/tel-aviv-night-1920px.webp">
+                    <source media="(min-width: 801px)" srcset="images/backgrounds/tel-aviv-night-1280px.webp">
+                    <source media="(max-width: 800px)" srcset="images/backgrounds/tel-aviv-night-800px.webp">
+                    <img src="images/backgrounds/tel-aviv-night-1920px.webp" alt="Tel Aviv Night Panorama Hero Image"
+                        class="absolute inset-0 w-full h-full object-cover z-0"
+                        style="pointer-events:none; user-select:none;" aria-hidden="true">
+                </picture>
                 <div class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/65 to-black/25 z-20"></div>
                 <div class="relative z-10 max-w-3xl mx-auto px-6 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
                     <div class="font-bold mb-6 animate" style="font-size: clamp(3rem, 2vw + 2.5rem, 4.5rem);">
@@ -378,9 +397,10 @@
                         </div>
                         <div class="lg:col-span-2 flex justify-center lg:justify-end items-start mt-8 lg:mt-0">
                             <div class="relative w-full max-w-sm">
-                                <img src="images/profiles/nadav-profile.webp"
+                                <img src="images/profiles/nadav-profile-512x740.webp"
                                     alt="Nadav Sella - Founder & Managing Director of FulO"
-                                    class="rounded-full shadow-2xl object-cover object-top w-64 h-64 mx-auto border-4 border-white">
+                                    class="rounded-full shadow-2xl object-cover object-top w-64 h-64 mx-auto border-4 border-white"
+                                    loading="lazy" decoding="async" width="512" height="740">
                             </div>
                         </div>
                     </div>
