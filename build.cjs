@@ -6,7 +6,7 @@ const isWatchMode = process.argv.includes('--watch');
 // Check if production mode is enabled (no source maps)
 const isProduction = process.argv.includes('--prod');
 
-esbuild.build({
+const buildConfig = {
     entryPoints: ['index.js'],
     bundle: true,
     minify: true,
@@ -14,7 +14,10 @@ esbuild.build({
     outfile: 'index.min.js',
     platform: 'node',
     target: 'node18',
-    watch: isWatchMode ? {
+};
+
+if (isWatchMode) {
+    buildConfig.watch = {
         onRebuild(error, result) {
             if (error) {
                 console.error('❌ Watch build failed:', error);
@@ -22,8 +25,10 @@ esbuild.build({
                 console.log('✅ Watch build succeeded:', result);
             }
         },
-    } : false,
-}).then(() => {
+    };
+}
+
+esbuild.build(buildConfig).then(() => {
     if (isWatchMode) {
         console.log('👀 Watching for changes in index.js...');
     } else {

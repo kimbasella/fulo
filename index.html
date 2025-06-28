@@ -101,6 +101,27 @@
 
     <!-- Load Tailwind -->
 
+    <!-- Skip Navigation Styles -->
+    <style>
+        .skip-link {
+            position: fixed;
+            top: -40px;
+            left: 6px;
+            background: #1f2937;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+    </style>
+
     <!-- Styles -->
     <link rel="stylesheet" href="index.min.css" media="print" onload="this.media='all'">
     <noscript>
@@ -148,21 +169,20 @@
     </script>
 
     <!-- Google Analytics (GA4) -->
-    <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-KGNMBV51TM"></script>
     <script>
-        // Initialize dataLayer
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+        // Load GA after page is interactive
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const script = document.createElement('script');
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-KGNMBV51TM';
+                script.async = true;
+                document.head.appendChild(script);
 
-        // Initialize GA with consent mode
-        gtag('consent', 'default', {
-            'analytics_storage': 'denied'
-        });
-
-        // Set up GA
-        gtag('js', new Date());
-        gtag('config', 'G-KGNMBV51TM', {
-            'anonymize_ip': true
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-KGNMBV51TM', { 'anonymize_ip': true });
+            }, 2000); // Wait 2 seconds after load
         });
     </script>
 
@@ -171,6 +191,7 @@
 </head>
 
 <body class="antialiased bg-white text-base">
+    <a href="#home" class="skip-link">Skip to main content</a>
     <div id="main-content-wrapper" class="overflow-x-hidden">
         <header id="main-header" class="fixed top-0 left-0 right-0 z-50" role="banner">
             <div class="container mx-auto px-6 sm:px-6 lg:px-8 max-w-screen-xl">
@@ -226,7 +247,7 @@
 
         <main role="main">
 
-            <section id="home" role="region" aria-label="Home"
+            <section id="home" role="region" aria-label="Home" tabindex="-1"
                 class="hero relative min-h-screen flex items-center justify-center text-white pt-20">
                 <picture class="absolute inset-0 w-full h-full object-cover z-0"
                     style="pointer-events:none; user-select:none;" aria-hidden="true">
