@@ -54,7 +54,11 @@
     <link rel="canonical" href="https://fulo.life/">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="index.min.css">
+    <link rel="preload" href="min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="min.css">
+    </noscript>
+
 
     <!-- reCAPTCHA v3 -->
     <script>
