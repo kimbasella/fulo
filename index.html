@@ -15,35 +15,6 @@
     <meta name="format-detection" content="telephone=no">
     <title>FulO - Israel | Japan Business Matchmaking</title>
 
-    <!-- Critical Styles -->
-    <style>
-        :root {
-            --primary-color: #003366;
-            --accent-color: #2563eb;
-            --accent-color-dark: #1d4ed8;
-            --text-base-color: #374151;
-            --text-muted-color: #4b5563;
-            --bg-light-gray-color: #f9fafb;
-            --bg-primary-color: var(--primary-color);
-            --bg-accent-color: var(--accent-color);
-            --text-on-primary-color: #fff;
-            --text-on-accent-color: #fff
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Base styles for immediate render */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #fff;
-            color: var(--text-base-color);
-        }
-    </style>
-
     <!-- Preload Critical Resources -->
     <link rel="preload" as="image" href="images/backgrounds/tel-aviv-night-800px.webp" fetchpriority="high">
     <link rel="preload" as="image" href="images/profiles/nadav-profile-512x740.webp" fetchpriority="high">
@@ -81,27 +52,6 @@
     <meta name="language" content="English">
     <meta name="revisit-after" content="7 days">
     <link rel="canonical" href="https://fulo.life/">
-
-    <!-- Skip Navigation Styles -->
-    <style>
-        .skip-link {
-            position: fixed;
-            top: -40px;
-            left: 6px;
-            background: #1f2937;
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 14px;
-            z-index: 1000;
-            transition: top 0.3s;
-        }
-
-        .skip-link:focus {
-            top: 6px;
-        }
-    </style>
 
     <!-- Styles -->
     <link rel="stylesheet" href="index.min.css">
@@ -255,8 +205,7 @@
                         <h2 class="font-extralight text-[var(--primary-color)] mb-8 tracking-tight"
                             style="font-size: clamp(2.5rem, 1.5vw + 2rem, 3.25rem);">Services</h2>
                         <p class="text-lg text-[var(--text-muted-color)] max-w-2xl mx-auto leading-relaxed">
-                            Specialized
-                            expertise to facilitate your business
+                            Specialized expertise to facilitate your business
                             growth between Israel and Japan.</p>
                     </div>
                     <div class="grid md:grid-cols-3 gap-8 lg:gap-12 justify-center mx-auto">
