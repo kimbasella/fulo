@@ -9,7 +9,7 @@
         "build:css": "tailwindcss -i index.css -o index.min.css --minify",
         "watch:css": "tailwindcss -i index.css -o index.min.css --watch",
         "watch:js": "node build.cjs --watch",
-        "build:js:prod": "node build.cjs --prod"
+        "deploy": "git push client-origin clean-production:production"
     },
     "devDependencies": {
         "esbuild": "^0.20.1",
