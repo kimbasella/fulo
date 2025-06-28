@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function setHeaderState() {
         if (!mainHeader) return;
-        if (window.pageYOffset > scrollThreshold) {
+        if (window.scrollY > scrollThreshold) {
             mainHeader.classList.add('header-scrolled');
             if (hamburgerButton) hamburgerButton.style.color = 'var(--primary-color)';
         } else {
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (targetElement) {
                 const headerOffset = 80;
                 const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
                 window.scrollTo({
                     top: offsetPosition,
@@ -209,8 +209,17 @@ document.addEventListener('DOMContentLoaded', function () {
             carouselTrack.scrollBy({ left: cardWidth, behavior: 'smooth' });
         });
 
-        // Update buttons on scroll (e.g., user manual scroll)
-        carouselTrack.addEventListener('scroll', updateCarouselButtons);
+        let rafId;  // This stores the ID of a pending animation frame
+
+        carouselTrack.addEventListener('scroll', () => {
+            if (!rafId) {  // If no frame is already scheduled...
+                rafId = requestAnimationFrame(() => {  // Schedule one and store its ID
+                    updateCarouselButtons();  // Run our function
+                    rafId = null;  // Clear the ID so we can schedule again
+                });
+            }
+            // If rafId already exists, ignore this scroll event
+        });
         // Update buttons on load and resize
         window.addEventListener('load', updateCarouselButtons);
         window.addEventListener('resize', updateCarouselButtons); // For responsive changes
@@ -225,4 +234,84 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     fixWidowsInTextBlocks();
-}); 
+});
+
+// Cookie Popup Functionality (add to end of index.js before closing });)
+
+// Cookie popup elements
+const cookiePopup = document.getElementById('cookie-popup');
+const cookieLink = document.getElementById('cookie-link');
+const cookieAccept = document.getElementById('cookie-accept');
+const cookieReject = document.getElementById('cookie-reject');
+const cookieManage = document.getElementById('cookie-manage');
+const cookieSave = document.getElementById('cookie-save');
+const cookieInitialView = document.getElementById('cookie-initial-view');
+const cookieManageView = document.getElementById('cookie-manage-view');
+const cookieAnalytics = document.getElementById('cookie-analytics');
+
+// Show cookie popup
+function showCookiePopup() {
+    if (cookiePopup) {
+        cookiePopup.classList.add('popup-visible');
+    }
+}
+
+// Hide cookie popup
+function hideCookiePopup() {
+    if (cookiePopup) {
+        cookiePopup.classList.remove('popup-visible');
+    }
+}
+
+// Show initial view
+function showInitialView() {
+    if (cookieInitialView && cookieManageView) {
+        cookieInitialView.style.display = 'block';
+        cookieManageView.style.display = 'none';
+    }
+}
+
+// Show manage view
+function showManageView() {
+    if (cookieInitialView && cookieManageView) {
+        cookieInitialView.style.display = 'none';
+        cookieManageView.style.display = 'block';
+    }
+}
+
+// Save preferences
+function savePreferences(analytics) {
+    localStorage.setItem('cookieConsent', JSON.stringify({
+        analytics: analytics,
+        timestamp: Date.now()
+    }));
+    hideCookiePopup();
+}
+
+// Event listeners
+if (cookieLink) {
+    cookieLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        showInitialView();
+        showCookiePopup();
+    });
+}
+
+if (cookieAccept) {
+    cookieAccept.addEventListener('click', () => savePreferences(true));
+}
+
+if (cookieReject) {
+    cookieReject.addEventListener('click', () => savePreferences(false));
+}
+
+if (cookieManage) {
+    cookieManage.addEventListener('click', showManageView);
+}
+
+if (cookieSave) {
+    cookieSave.addEventListener('click', () => {
+        const analyticsChecked = cookieAnalytics ? cookieAnalytics.checked : false;
+        savePreferences(analyticsChecked);
+    });
+}

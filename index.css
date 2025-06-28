@@ -1,3 +1,13 @@
+/* Optimized fallback font to match Montserrat metrics */
+@font-face {
+        font-family: 'Montserrat-fallback';
+        src: local('Arial'), local('Helvetica'), local('sans-serif');
+        size-adjust: 107%;
+        ascent-override: 95%;
+        descent-override: 22%;
+        line-gap-override: 0%;
+}
+
 @font-face {
         font-display: swap;
         font-family: Montserrat;
@@ -1484,7 +1494,7 @@ select {
 }
 
 body {
-        font-family: Montserrat, sans-serif;
+        font-family: Montserrat, 'Montserrat-fallback', sans-serif;
         color: var(--text-base-color)
 }
 

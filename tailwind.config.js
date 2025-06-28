@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ["./*.{html,js}"],
-    purge: ['./*.html', './*.js'],
     theme: {
         extend: {
             colors: {
@@ -16,4 +15,7 @@ module.exports = {
         },
     },
     plugins: [],
-} 
+    // Add aggressive purging for production
+    safelist: [],
+    blocklist: [],
+}

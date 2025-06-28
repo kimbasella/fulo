@@ -19,11 +19,15 @@
     <style>
         :root {
             --primary-color: #003366;
-            --accent-color: #4A90E2;
-            --accent-color-dark: #3A77C8;
+            --accent-color: #2563eb;
+            --accent-color-dark: #1d4ed8;
             --text-base-color: #374151;
-            --text-muted-color: #6B7280;
-            --bg-light-gray-color: #eaebf3;
+            --text-muted-color: #4b5563;
+            --bg-light-gray-color: #f9fafb;
+            --bg-primary-color: var(--primary-color);
+            --bg-accent-color: var(--accent-color);
+            --text-on-primary-color: #fff;
+            --text-on-accent-color: #fff
         }
 
         html {
@@ -50,11 +54,21 @@
             justify-content: center;
             padding-top: 5rem;
             text-align: center;
-            /* background-image: url('images/backgrounds/tel-aviv-night.webp'); */
+            /* background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect width="1920" height="1080" fill="%23003366"/></svg>'); */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            overflow: hidden;
+        }
+
+        /* Reserve space for hero background image to prevent CLS */
+        .hero picture {
+            aspect-ratio: 16 / 9;
+        }
+
+        .hero picture img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
         }
 
         .grecaptcha-badge {
@@ -64,6 +78,7 @@
 
     <!-- Preload Critical Resources -->
     <link rel="preload" as="image" href="images/backgrounds/tel-aviv-night-800px.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="images/profiles/nadav-profile-512x740.webp" fetchpriority="high">
     <link rel="preload" href="fonts/montserrat-v30-latin-700.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/montserrat-v30-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
 
@@ -84,7 +99,7 @@
     <meta property="og:title" content="FulO - Israel | Japan Business Matchmaking">
     <meta property="og:description"
         content="FulO connects Israeli innovation with Japanese markets, creating strategic partnerships that drive growth and international success. Expert guidance in business matchmaking, market entry, and cross-cultural business development.">
-    <meta property="og:image" content="https://fulo.life/images/backgrounds/tel-aviv-night.webp">
+    <meta property="og:image" content="https://fulo.life/images/backgrounds/tel-aviv-night-1200x630.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -92,14 +107,12 @@
     <meta property="twitter:title" content="FulO - Israel | Japan Business Matchmaking">
     <meta property="twitter:description"
         content="FulO connects Israeli innovation with Japanese markets, creating strategic partnerships that drive growth and international success. Expert guidance in business matchmaking, market entry, and cross-cultural business development.">
-    <meta property="twitter:image" content="https://fulo.life/images/backgrounds/tel-aviv-night.webp">
+    <meta property="twitter:image" content="https://fulo.life/images/backgrounds/tel-aviv-night-1200x630.jpg">
 
     <!-- Additional Meta Tags -->
     <meta name="language" content="English">
     <meta name="revisit-after" content="7 days">
     <link rel="canonical" href="https://fulo.life/">
-
-    <!-- Load Tailwind -->
 
     <!-- Skip Navigation Styles -->
     <style>
@@ -182,7 +195,7 @@
                 function gtag() { dataLayer.push(arguments); }
                 gtag('js', new Date());
                 gtag('config', 'G-KGNMBV51TM', { 'anonymize_ip': true });
-            }, 2000); // Wait 2 seconds after load
+            }, 5000); // Wait 2 seconds after load
         });
     </script>
 
@@ -223,25 +236,20 @@
                     </div>
                 </nav>
             </div>
-            <div id="mobile-menu" class="md:hidden bg-white shadow-lg py-2" role="menu" aria-label="Mobile navigation">
-                <ul class="flex flex-col items-center space-y-3">
-                    <li role="none"><a href="#home"
-                            class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors"
-                            role="menuitem" aria-label="Navigate to Home Section">Home</a>
-                    </li>
-                    <li role="none"><a href="#services"
-                            class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors"
-                            role="menuitem" aria-label="Navigate to Services Section">Services</a>
-                    </li>
-                    <li role="none"><a href="#about"
-                            class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors"
-                            role="menuitem" aria-label="Navigate to About Section">About</a>
-                    </li>
-                    <li role="none"><a href="#contact"
-                            class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors"
-                            role="menuitem" aria-label="Navigate to Contact Section">Contact</a>
-                    </li>
-                </ul>
+            <div id="mobile-menu" class="md:hidden bg-white shadow-lg py-2 flex flex-col items-center space-y-3"
+                role="menu" aria-label="Mobile navigation">
+                <a href="#home"
+                    class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors"
+                    role="menuitem" aria-label="Navigate to Home Section">Home</a>
+                <a href="#services"
+                    class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors"
+                    role="menuitem" aria-label="Navigate to Services Section">Services</a>
+                <a href="#about"
+                    class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors"
+                    role="menuitem" aria-label="Navigate to About Section">About</a>
+                <a href="#contact"
+                    class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors"
+                    role="menuitem" aria-label="Navigate to Contact Section">Contact</a>
             </div>
         </header>
 
@@ -256,7 +264,7 @@
                     <source media="(max-width: 800px)" srcset="images/backgrounds/tel-aviv-night-800px.webp">
                     <img src="images/backgrounds/tel-aviv-night-1920px.webp" alt="Tel Aviv Night Panorama Hero Image"
                         class="absolute inset-0 w-full h-full object-cover z-0"
-                        style="pointer-events:none; user-select:none;" aria-hidden="true">
+                        style="pointer-events:none; user-select:none;" aria-hidden="true" width="1920" height="1080">
                 </picture>
                 <div class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/65 to-black/25 z-20"></div>
                 <div class="relative z-10 max-w-3xl mx-auto px-6 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
@@ -421,7 +429,7 @@
                                 <img src="images/profiles/nadav-profile-512x740.webp"
                                     alt="Nadav Sella - Founder & Managing Director of FulO"
                                     class="rounded-full shadow-2xl object-cover object-top w-64 h-64 mx-auto border-4 border-white"
-                                    loading="lazy" decoding="async" width="512" height="740">
+                                    loading="eager" fetchpriority="high" width="512" height="740">
                             </div>
                         </div>
                     </div>
@@ -451,12 +459,14 @@
                                         target="_blank" rel="noopener noreferrer">
                                         <img src="images/profiles/reiko nomiyama profile pic low res.webp"
                                             alt="Reiko Nomiyama - Advisory Board Member"
-                                            class="w-32 h-32 rounded-full mx-auto mb-5 object-cover border-4 border-white shadow-md">
+                                            class="w-32 h-32 rounded-full mx-auto mb-5 object-cover border-4 border-white shadow-md"
+                                            loading="lazy">
                                     </a>
                                     <h3 class="text-2xl font-semibold text-[var(--primary-color)] mb-1">Reiko Nomiyama
                                         <a href="https://www.linkedin.com/in/reiko-nomiyama-115b07147?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
                                             target="_blank" rel="noopener noreferrer"
-                                            class="inline-block ml-2 text-[var(--accent-color)] hover:text-[var(--accent-color-dark)] align-middle">
+                                            class="inline-block ml-2 text-[var(--accent-color)] hover:text-[var(--accent-color-dark)] align-middle"
+                                            aria-label="View Reiko Nomiyama's LinkedIn profile">
                                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
                                                 aria-hidden="true">
                                                 <path fill-rule="evenodd"
@@ -484,14 +494,15 @@
                                         target="_blank" rel="noopener noreferrer">
                                         <div
                                             class="w-32 h-32 rounded-full mx-auto mb-5 bg-gray-300 border-4 border-white shadow-md flex items-center justify-center">
-                                            <img src="images/profiles/Richard_Taylor.webp" alt="Richard Taylor"
-                                                class="w-full h-full object-cover rounded-full">
+                                            <img src="images/profiles/Richard_Taylor-240x240.webp" alt="Richard Taylor"
+                                                class="w-full h-full object-cover rounded-full" loading="lazy">
                                         </div>
                                     </a>
                                     <h3 class="text-2xl font-semibold text-[var(--primary-color)] mb-1">Richard Taylor
                                         <a href="https://www.linkedin.com/in/richard-taylor-8a7989ab?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
                                             target="_blank" rel="noopener noreferrer"
-                                            class="inline-block ml-2 text-[var(--accent-color)] hover:text-[var(--accent-color-dark)] align-middle">
+                                            class="inline-block ml-2 text-[var(--accent-color)] hover:text-[var(--accent-color-dark)] align-middle"
+                                            aria-label="View Richard Taylor's LinkedIn profile">
                                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
                                                 aria-hidden="true">
                                                 <path fill-rule="evenodd"
@@ -526,7 +537,8 @@
                                         Kawaguchi
                                         <a href="https://www.linkedin.com/in/masahiro-kawaguchi-68974aa6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
                                             target="_blank" rel="noopener noreferrer"
-                                            class="inline-block ml-2 text-[var(--accent-color)] hover:text-[var(--accent-color-dark)] align-middle">
+                                            class="inline-block ml-2 text-[var(--accent-color)] hover:text-[var(--accent-color-dark)] align-middle"
+                                            aria-label="View Masahiro Kawaguchi's LinkedIn profile">
                                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
                                                 aria-hidden="true">
                                                 <path fill-rule="evenodd"
@@ -618,11 +630,11 @@
                                         <div>
                                             <h4 class="text-base font-medium text-[var(--primary-color)] mb-1">Office
                                                 Location</h4>
-                                            <address class="not-italic text-[var(--text-muted-color)]">
-                                                <span itemprop="streetAddress">32 Shlomo Ben Yosef</span><br>
-                                                <span itemprop="addressLocality">Tel Aviv</span>,
-                                                <span itemprop="postalCode">6912530</span><br>
-                                                <span itemprop="addressCountry">Israel</span>
+                                            <address class="not-italic text-[var(--text-muted-color)]" itemscope
+                                                itemtype="https://schema.org/PostalAddress">
+                                                32 Shlomo Ben Yosef<br>
+                                                Tel Aviv, 6912530<br>
+                                                Israel
                                             </address>
                                         </div>
                                     </div>
@@ -703,7 +715,8 @@
                     <div class="grid md:grid-cols-3 gap-8 md:gap-12 mb-12">
                         <!-- Logo & Description -->
                         <div class="md:col-span-1 text-center md:text-left">
-                            <a href="#" class="inline-block text-3xl font-bold text-white mb-6">Ful<span
+                            <a href="#home" class="inline-block text-3xl font-bold text-white mb-6"
+                                aria-label="Return to top of page">Ful<span
                                     class="text-[var(--accent-color)]">O</span></a>
                             <p class="text-gray-400 text-sm leading-relaxed max-w-sm md:max-w-none mx-auto md:mx-0">
                                 Bridging Israeli innovation with Japanese markets through strategic partnerships and
@@ -762,8 +775,8 @@
                                     class="text-white hover:-translate-y-0.5 transition-all inline-block text-xs">Terms
                                     of Use</a>
                                 <span class="text-gray-500 text-xs">&nbsp;|&nbsp;</span>
-                                <a href="javascript:void(0);" id="cookie-link"
-                                    class="text-white hover:-translate-y-0.5 transition-all inline-block text-xs">Cookies</a>
+                                <button type="button" id="cookie-link"
+                                    class="text-white hover:-translate-y-0.5 transition-all inline-block text-xs bg-transparent border-0 p-0 cursor-pointer font-inherit">Cookies</button>
                             </div>
                             <p class="text-xs text-gray-400 mb-0 justify-self-center text-center">
                                 &copy; <span id="currentYear"></span> FulO
