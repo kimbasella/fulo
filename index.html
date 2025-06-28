@@ -1,21 +1,28 @@
 <!-- xFeinschmecker | www.feinschmecker.dev -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html style="visibility:hidden; background:black">
 
 <head>
     <meta charset="UTF-8">
-    <!-- Critical loading styles - must be first -->
-    <style>
-        html:not(.ready) {
-            opacity: 0;
-            background: black;
-            transition: opacity 0.1s ease-in;
-        }
-    </style>
     <script>
-        document.documentElement.classList.add('ready');
+        window.addEventListener('load', () => {
+            const el = document.documentElement;
+            el.style.visibility = 'visible';
+            el.style.background = ''; // removes inline black background
+        });
+
     </script>
+    <noscript>
+        <style>
+            html {
+                visibility: visible;
+                background: initial;
+            }
+        </style>
+    </noscript>
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="all">
     <meta name="googlebot" content="all">
