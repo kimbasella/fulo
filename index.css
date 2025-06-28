@@ -39,7 +39,7 @@ body {
         font-family: Montserrat;
         font-style: normal;
         font-weight: 400;
-        src: url(fonts/montserrat-v30-latin-regular.woff2) format("woff2")
+        src: url(fonts/montserrat-v30-latin-regular.woff2?v=74795056) format("woff2")
 }
 
 @font-face {
@@ -47,7 +47,7 @@ body {
         font-family: Montserrat;
         font-style: normal;
         font-weight: 700;
-        src: url(fonts/montserrat-v30-latin-700.woff2) format("woff2")
+        src: url(fonts/montserrat-v30-latin-700.woff2?v=0c556945) format("woff2")
 }
 
 .skip-link {
@@ -1952,7 +1952,7 @@ th {
         justify-content: center;
         padding-top: 5rem;
         text-align: center;
-        background-image: url('images/backgrounds/tel-aviv-night.webp');
+        background-image: url('images/backgrounds/tel-aviv-night-1920px.webp?v=d027deba');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;

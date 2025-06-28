@@ -5,6 +5,23 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- Critical loading styles - must be first -->
+    <style>
+        body {
+            background: black;
+            transition: background 0.3s;
+        }
+
+        body.loaded {
+            background: none;
+        }
+    </style>
+    <script>
+        // Debug loading state
+        console.log('Initial load started');
+        document.addEventListener('DOMContentLoaded', () => console.log('DOM Content Loaded'));
+        window.addEventListener('load', () => console.log('Window Loaded'));
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="all">
     <meta name="googlebot" content="all">
@@ -54,9 +71,9 @@
     <link rel="canonical" href="https://fulo.life/">
 
     <!-- Styles -->
-    <link rel="preload" href="index.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="index.min.css?v=4fd26f61" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-        <link rel="stylesheet" href="index.min.css">
+        <link rel="stylesheet" href="index.min.css?v=4fd26f61">
     </noscript>
 
 
@@ -119,10 +136,10 @@
     </script>
 
     <!-- Load Minified JavaScript -->
-    <script src="index.min.js" defer></script>
+    <script src="index.min.js?v=4773a2f1" defer></script>
 </head>
 
-<body class="antialiased bg-white text-base">
+<body class="antialiased text-base">
     <a href="#home" class="skip-link">Skip to main content</a>
     <div id="main-content-wrapper" class="overflow-x-hidden">
         <header id="main-header" class="fixed top-0 left-0 right-0 z-50" role="banner">

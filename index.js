@@ -1,3 +1,60 @@
+// Loading state management
+console.log('Loading script initialized');
+
+function handleContentLoad() {
+    console.log('Handling content load');
+    // Wait for critical resources
+    Promise.all([
+        document.fonts.ready,
+        Promise.all(
+            Array.from(document.querySelectorAll('img[fetchpriority="high"]'))
+                .map(img => {
+                    if (img.complete) return Promise.resolve();
+                    return new Promise(resolve => {
+                        img.onload = resolve;
+                        img.onerror = resolve;
+                    });
+                })
+        )
+    ]).then(() => {
+        console.log('All resources loaded');
+        requestAnimationFrame(() => {
+            console.log('Adding loaded class');
+            document.body.classList.add('loaded');
+        });
+    }).catch(error => {
+        console.error('Error during load:', error);
+        // Show content anyway after error
+        document.body.classList.add('loaded');
+    });
+}
+
+// Start loading process when CSS is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOM Content Loaded - checking CSS');
+        const styleSheet = document.querySelector('link[rel="stylesheet"]');
+        if (styleSheet.sheet) {
+            console.log('CSS already loaded');
+            handleContentLoad();
+        } else {
+            console.log('Waiting for CSS load');
+            styleSheet.addEventListener('load', handleContentLoad);
+        }
+    });
+} else {
+    console.log('DOM already loaded - starting immediately');
+    handleContentLoad();
+}
+
+// Fallback to ensure content becomes visible
+setTimeout(() => {
+    if (!document.body.classList.contains('loaded')) {
+        console.log('Fallback: forcing loaded state');
+        document.body.classList.add('loaded');
+    }
+}, 2000);
+
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 

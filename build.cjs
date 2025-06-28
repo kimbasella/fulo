@@ -1,6 +1,7 @@
 const esbuild = require('esbuild');
 const fs = require('fs').promises;
 const path = require('path');
+const { execSync } = require('child_process');
 
 // Check if watch mode is enabled
 const isWatchMode = process.argv.includes('--watch');
@@ -42,6 +43,15 @@ async function generateCriticalCSS() {
     }
 }
 
+// Function to run versioning
+function runVersioning() {
+    try {
+        execSync('node version.js', { stdio: 'inherit' });
+    } catch (error) {
+        console.error('❌ Versioning failed:', error);
+    }
+}
+
 if (isWatchMode) {
     buildConfig.watch = {
         onRebuild(error, result) {
@@ -49,6 +59,7 @@ if (isWatchMode) {
                 console.error('❌ Watch build failed:', error);
             } else {
                 console.log('✅ Watch build succeeded:', result);
+                runVersioning();
             }
         },
     };
@@ -60,5 +71,6 @@ esbuild.build(buildConfig).then(async () => {
     } else {
         console.log('✅ Build successful: index.min.js has been created.');
         await generateCriticalCSS();
+        runVersioning();
     }
 }).catch(() => process.exit(1)); 

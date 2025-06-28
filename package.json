@@ -5,10 +5,11 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "build": "node build.cjs",
+        "build": "npm run build:js && npm run build:css",
+        "build:js": "node build.js",
         "build:css": "tailwindcss -i index.css -o index.min.css --minify",
         "watch:css": "tailwindcss -i index.css -o index.min.css --watch",
-        "watch:js": "node build.cjs --watch",
+        "watch:js": "node build.js --watch",
         "deploy": "git push client-origin clean-production:production"
     },
     "devDependencies": {
