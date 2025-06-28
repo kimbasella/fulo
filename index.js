@@ -1,34 +1,6 @@
 // Loading state management
 console.log('Loading script initialized');
 
-function handleContentLoad() {
-    console.log('Handling content load');
-    // Wait for critical resources
-    Promise.all([
-        document.fonts.ready,
-        Promise.all(
-            Array.from(document.querySelectorAll('img[fetchpriority="high"]'))
-                .map(img => {
-                    if (img.complete) return Promise.resolve();
-                    return new Promise(resolve => {
-                        img.onload = resolve;
-                        img.onerror = resolve;
-                    });
-                })
-        )
-    ]).then(() => {
-        console.log('All resources loaded');
-        requestAnimationFrame(() => {
-            console.log('Adding loaded class');
-            document.body.classList.add('loaded');
-        });
-    }).catch(error => {
-        console.error('Error during load:', error);
-        // Show content anyway after error
-        document.body.classList.add('loaded');
-    });
-}
-
 // Start loading process when CSS is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -36,23 +8,20 @@ if (document.readyState === 'loading') {
         const styleSheet = document.querySelector('link[rel="stylesheet"]');
         if (styleSheet.sheet) {
             console.log('CSS already loaded');
-            handleContentLoad();
         } else {
             console.log('Waiting for CSS load');
-            styleSheet.addEventListener('load', handleContentLoad);
+            styleSheet.addEventListener('load', () => {
+                console.log('CSS loaded');
+            });
         }
     });
 } else {
     console.log('DOM already loaded - starting immediately');
-    handleContentLoad();
 }
 
 // Fallback to ensure content becomes visible
 setTimeout(() => {
-    if (!document.body.classList.contains('loaded')) {
-        console.log('Fallback: forcing loaded state');
-        document.body.classList.add('loaded');
-    }
+    document.body.style.background = 'none';
 }, 2000);
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -77,6 +46,20 @@ document.addEventListener('DOMContentLoaded', function () {
     setHeaderState();
 
     window.addEventListener('scroll', setHeaderState);
+
+    const animatedElements = document.querySelectorAll('.animate');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in-up');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    animatedElements.forEach(element => {
+        observer.observe(element);
+    });
 
     const navLinks = mobileMenu.querySelectorAll('a.header-nav-link-mobile');
 
@@ -196,20 +179,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
-    const animatedElements = document.querySelectorAll('.animate');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    animatedElements.forEach(element => {
-        observer.observe(element);
-    });
 
     // Carousel Functionality
     const carouselTrack = document.querySelector('#advisory-board .flex.overflow-x-auto');

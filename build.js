@@ -1,7 +1,6 @@
 import * as esbuild from 'esbuild';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import { spawn } from 'child_process';
 
 const execAsync = promisify(exec);
 const isWatchMode = process.argv.includes('--watch');
@@ -32,45 +31,24 @@ async function generateCriticalCSS() {
     console.log('✅ Critical CSS generated');
 }
 
-// Function to watch CSS and run versioning on changes
-function watchCSS() {
-    const tailwind = spawn('tailwindcss', ['-i', 'index.css', '-o', 'index.min.css', '--watch']);
-
-    tailwind.stdout.on('data', (data) => {
-        const output = data.toString();
-        console.log(output);
-        if (output.includes('Done in')) {
-            runVersioning();
-        }
-    });
-
-    tailwind.stderr.on('data', (data) => {
-        console.error(`CSS Error: ${data}`);
-    });
-}
-
 if (isWatchMode) {
-    if (process.argv.includes('--css')) {
-        watchCSS();
-    } else {
-        buildConfig.watch = {
-            onRebuild(error, result) {
-                if (error) {
-                    console.error('❌ Watch build failed:', error);
-                } else {
-                    console.log('✅ Watch build succeeded:', result);
-                    runVersioning();
-                }
-            },
-        };
-    }
+    buildConfig.watch = {
+        onRebuild(error, result) {
+            if (error) {
+                console.error('❌ Watch build failed:', error);
+            } else {
+                console.log('✅ Watch build succeeded:', result);
+                runVersioning();
+            }
+        },
+    };
 }
 
 // Main build process
 try {
     await esbuild.build(buildConfig);
     if (isWatchMode) {
-        console.log('👀 Watching for changes...');
+        console.log('👀 Watching for changes in index.js...');
     } else {
         console.log('✅ Build successful: index.min.js has been created.');
         await generateCriticalCSS();

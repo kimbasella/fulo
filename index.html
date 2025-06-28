@@ -7,20 +7,12 @@
     <meta charset="UTF-8">
     <!-- Critical loading styles - must be first -->
     <style>
-        body {
-            background: black;
-            transition: background 0.3s;
-        }
-
-        body.loaded {
-            background: none;
+        html:not(.ready) body {
+            visibility: hidden;
         }
     </style>
     <script>
-        // Debug loading state
-        console.log('Initial load started');
-        document.addEventListener('DOMContentLoaded', () => console.log('DOM Content Loaded'));
-        window.addEventListener('load', () => console.log('Window Loaded'));
+        document.documentElement.classList.add('ready');
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="all">
@@ -136,7 +128,7 @@
     </script>
 
     <!-- Load Minified JavaScript -->
-    <script src="index.min.js?v=4773a2f1" defer></script>
+    <script src="index.min.js?v=92b38c18" defer></script>
 </head>
 
 <body class="antialiased text-base">

@@ -7,8 +7,8 @@
     "scripts": {
         "build": "npm run build:js && npm run build:css",
         "build:js": "node build.js",
-        "build:css": "tailwindcss -i index.css -o index.min.css --minify && node version.js",
-        "watch:css": "node build.js --watch --css",
+        "build:css": "tailwindcss -i index.css -o index.min.css --minify",
+        "watch:css": "tailwindcss -i index.css -o index.min.css --watch",
         "watch:js": "node build.js --watch",
         "deploy": "git push client-origin clean-production:production"
     },
