@@ -7,8 +7,10 @@
     <meta charset="UTF-8">
     <!-- Critical loading styles - must be first -->
     <style>
-        html:not(.ready) body {
-            visibility: hidden;
+        html:not(.ready) {
+            opacity: 0;
+            background: black;
+            transition: opacity 0.1s ease-in;
         }
     </style>
     <script>
