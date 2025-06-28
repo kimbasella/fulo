@@ -1,4 +1,6 @@
 const esbuild = require('esbuild');
+const fs = require('fs').promises;
+const path = require('path');
 
 // Check if watch mode is enabled
 const isWatchMode = process.argv.includes('--watch');
@@ -16,6 +18,30 @@ const buildConfig = {
     target: 'node18',
 };
 
+async function generateCriticalCSS() {
+    try {
+        // Dynamically import the critical package
+        const { generate } = await import('critical');
+
+        await generate({
+            base: __dirname,
+            src: 'index.html',
+            css: ['index.min.css'],
+            width: 1300,
+            height: 900,
+            target: {
+                html: 'index.html' // Explicitly set the output to overwrite the source
+            },
+            inline: true, // Ensure CSS is inlined
+        });
+
+        console.log('✅ Critical CSS generated and inlined successfully.');
+
+    } catch (error) {
+        console.error('❌ Failed to generate critical CSS:', error);
+    }
+}
+
 if (isWatchMode) {
     buildConfig.watch = {
         onRebuild(error, result) {
@@ -28,10 +54,11 @@ if (isWatchMode) {
     };
 }
 
-esbuild.build(buildConfig).then(() => {
+esbuild.build(buildConfig).then(async () => {
     if (isWatchMode) {
         console.log('👀 Watching for changes in index.js...');
     } else {
         console.log('✅ Build successful: index.min.js has been created.');
+        await generateCriticalCSS();
     }
 }).catch(() => process.exit(1)); 
