@@ -1,28 +1,19 @@
-// Loading state management
-console.log('Loading script initialized');
+// Wait for the custom event signaling the page is visible before initializing animations
+window.addEventListener('pageVisible', () => {
+    const animatedElements = document.querySelectorAll('.animate');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in-up');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
 
-// Start loading process when CSS is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOM Content Loaded - checking CSS');
-        const styleSheet = document.querySelector('link[rel="stylesheet"]');
-        if (styleSheet.sheet) {
-            console.log('CSS already loaded');
-        } else {
-            console.log('Waiting for CSS load');
-            styleSheet.addEventListener('load', () => {
-                console.log('CSS loaded');
-            });
-        }
+    animatedElements.forEach(element => {
+        observer.observe(element);
     });
-} else {
-    console.log('DOM already loaded - starting immediately');
-}
-
-// Fallback to ensure content becomes visible
-setTimeout(() => {
-    document.body.style.background = 'none';
-}, 2000);
+});
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -46,23 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
     setHeaderState();
 
     window.addEventListener('scroll', setHeaderState);
-
-    // Wait for the custom event signaling the page is visible before initializing animations
-    window.addEventListener('pageVisible', () => {
-        const animatedElements = document.querySelectorAll('.animate');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        animatedElements.forEach(element => {
-            observer.observe(element);
-        });
-    });
 
     const navLinks = mobileMenu.querySelectorAll('a.header-nav-link-mobile');
 
