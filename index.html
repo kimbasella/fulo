@@ -9,7 +9,9 @@
         window.addEventListener('load', () => {
             const el = document.documentElement;
             el.style.visibility = 'visible';
-            el.style.background = ''; // removes inline black background
+            el.style.background = '';
+            // Dispatch custom event to signal page is visible for animations
+            window.dispatchEvent(new Event('pageVisible'));
         });
 
     </script>
@@ -18,6 +20,11 @@
             html {
                 visibility: visible;
                 background: initial;
+            }
+
+            .animate {
+                opacity: 1;
+                transform: translateY(0);
             }
         </style>
     </noscript>
@@ -72,9 +79,9 @@
     <link rel="canonical" href="https://fulo.life/">
 
     <!-- Styles -->
-    <link rel="preload" href="index.min.css?v=4fd26f61" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="index.min.css?v=6895fa31" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-        <link rel="stylesheet" href="index.min.css?v=4fd26f61">
+        <link rel="stylesheet" href="index.min.css?v=6895fa31">
     </noscript>
 
 
@@ -137,7 +144,7 @@
     </script>
 
     <!-- Load Minified JavaScript -->
-    <script src="index.min.js?v=92b38c18" defer></script>
+    <script src="index.min.js?v=664d7f77" defer></script>
 </head>
 
 <body class="antialiased text-base">

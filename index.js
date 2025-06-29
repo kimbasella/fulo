@@ -47,18 +47,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('scroll', setHeaderState);
 
-    const animatedElements = document.querySelectorAll('.animate');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
+    // Wait for the custom event signaling the page is visible before initializing animations
+    window.addEventListener('pageVisible', () => {
+        const animatedElements = document.querySelectorAll('.animate');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
 
-    animatedElements.forEach(element => {
-        observer.observe(element);
+        animatedElements.forEach(element => {
+            observer.observe(element);
+        });
     });
 
     const navLinks = mobileMenu.querySelectorAll('a.header-nav-link-mobile');
