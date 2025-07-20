@@ -19,7 +19,7 @@ html {
 body {
         margin: 0;
         padding: 0;
-        font-family: Montserrat, Montserrat-fallback;
+        font-family: 'Noto Sans JP', Montserrat, Montserrat-fallback, sans-serif;
         background: #fff;
         color: var(--text-base-color);
 }
@@ -48,6 +48,22 @@ body {
         font-style: normal;
         font-weight: 700;
         src: url(fonts/montserrat-v30-latin-700.woff2?v=0c556945) format("woff2")
+}
+
+@font-face {
+        font-display: swap;
+        font-family: 'Noto Sans JP';
+        font-style: normal;
+        font-weight: 400;
+        src: url(fonts/NotoSansCJKjp-Regular.woff2?v=47f2688b) format("woff2");
+}
+
+@font-face {
+        font-display: swap;
+        font-family: 'Noto Sans JP';
+        font-style: normal;
+        font-weight: 700;
+        src: url(fonts/NotoSansCJKjp-Bold.woff2?v=ad9ae6df) format("woff2");
 }
 
 .skip-link {
@@ -1582,6 +1598,12 @@ body {
         transition: color .2s ease-in-out, transform .2s ease-in-out
 }
 
+.header-nav-separator {
+        color: #e5e7eb !important;
+        display: inline-block;
+        transition: color .2s ease-in-out;
+}
+
 .header-nav-link:hover {
         color: #fff;
         transform: scale(1.05) translateY(-1px)
@@ -1603,6 +1625,18 @@ body {
         color: #4b5563;
         display: inline-block;
         transition: color .2s ease-in-out, transform .2s ease-in-out
+}
+
+#main-header.header-scrolled .header-nav-separator {
+        color: #4b5563 !important;
+        /* Match the scrolled nav link color */
+}
+
+/* Mobile menu separator styling */
+#mobile-menu .header-nav-separator {
+        font-size: 1.5rem;
+        color: var(--text-muted-color) !important;
+        /* Match mobile nav link color */
 }
 
 #main-header.header-scrolled .header-nav-link:hover {

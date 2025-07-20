@@ -1,36 +1,8 @@
-<!-- xFeinschmecker | www.feinschmecker.dev -->
-
 <!DOCTYPE html>
-<html lang="en" style="visibility:hidden; background:black">
+<html lang="ja" style="visibility:hidden; background:black">
 
 <head>
     <meta charset="UTF-8">
-
-    <!-- Language Detection Script -->
-    <script>
-        // Simple IP-based language detection
-        (function () {
-            // Check if user has already been redirected or manually chose language
-            if (sessionStorage.getItem('langDetected') || window.location.search.includes('lang=')) {
-                return;
-            }
-
-            // Use ipapi.co for free IP geolocation (simple and reliable)
-            fetch('https://ipapi.co/country_code/')
-                .then(response => response.text())
-                .then(countryCode => {
-                    sessionStorage.setItem('langDetected', 'true');
-                    if (countryCode.trim().toUpperCase() === 'JP') {
-                        window.location.href = '/index.ja.html';
-                    }
-                })
-                .catch(() => {
-                    // Default to English if IP service fails
-                    sessionStorage.setItem('langDetected', 'true');
-                });
-        })();
-    </script>
-
     <script>
         window.addEventListener('load', () => {
             const el = document.documentElement;
@@ -66,16 +38,13 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
-    <title>FulO - Israel | Japan Business Matchmaking</title>
+    <title>FulO - イスラエル | 日本ビジネスマッチング</title>
 
     <!-- Preload Critical Resources -->
     <link rel="preload" as="image" href="images/backgrounds/tel-aviv-night-800px.webp" fetchpriority="high">
     <link rel="preload" as="image" href="images/profiles/nadav-profile-512x740.webp" fetchpriority="high">
     <link rel="preload" href="fonts/montserrat-v30-latin-700.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/montserrat-v30-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-    <!-- Preload Japanese Fonts -->
-    <link rel="preload" href="fonts/NotoSansCJKjp-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="fonts/NotoSansCJKjp-Bold.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/images/icons/favicon.svg">
@@ -110,9 +79,9 @@
     <link rel="canonical" href="https://fulo.life/">
 
     <!-- Styles -->
-    <link rel="preload" href="index.min.css?v=1e8ccc27" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="index.min.css?v=6895fa31" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-        <link rel="stylesheet" href="index.min.css?v=1e8ccc27">
+        <link rel="stylesheet" href="index.min.css?v=6895fa31">
     </noscript>
 
 
@@ -176,6 +145,15 @@
 
     <!-- Load Minified JavaScript -->
     <script src="index.min.js?v=f7102ad4" defer></script>
+
+    <!-- Japanese font -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+    </style>
+
 </head>
 
 <body class="antialiased text-base">
@@ -189,21 +167,21 @@
                     </a>
                     <ul class="hidden md:flex space-x-8 items-center" role="menubar">
                         <li role="none"><a href="#home" class="header-nav-link transition-colors" role="menuitem"
-                                aria-label="Navigate to Home Section">Home</a></li>
+                                aria-label="Navigate to Home Section">ホーム</a></li>
                         <li role="none"><a href="#services" class="header-nav-link transition-colors" role="menuitem"
-                                aria-label="Navigate to Services Section">Services</a>
+                                aria-label="Navigate to Services Section">事業内容</a>
                         </li>
                         <li role="none"><a href="#about" class="header-nav-link transition-colors" role="menuitem"
-                                aria-label="Navigate to About Section">About</a></li>
+                                aria-label="Navigate to About Section">会社概要</a></li>
                         <li role="none"><a href="#contact" class="header-nav-link transition-colors" role="menuitem"
-                                aria-label="Navigate to Contact Section">Contact</a>
+                                aria-label="Navigate to Contact Section">お問い合わせ</a>
                         </li>
                         <span class="header-nav-separator mr-4 ml-4">|</span>
-                        <li role="none" class="hidden"><a href="index.html" class="header-nav-link transition-colors"
+                        <li role="none"><a href="index.html" class="header-nav-link transition-colors"
                                 role="menuitem">En</a></li>
 
-                        <li role="none"><a href="index.ja.html" class="header-nav-link transition-colors"
-                                role="menuitem">日本語</a></li>
+                        <li role="none" class="hidden"><a href="index.ja.html" class="header-nav-link transition-colors"
+                                role="menuitem"><span style="color:#2563eb">日本語</span></a></li>
                     </ul>
 
                     <div class="md:hidden hamburger-button">
@@ -223,22 +201,22 @@
                 role="menu" aria-label="Mobile navigation">
                 <a href="#home"
                     class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors"
-                    role="menuitem" aria-label="Navigate to Home Section">Home</a>
+                    role="menuitem" aria-label="Navigate to Home Section">ホーム</a>
                 <a href="#services"
                     class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors"
-                    role="menuitem" aria-label="Navigate to Services Section">Services</a>
+                    role="menuitem" aria-label="Navigate to Services Section">事業内容</a>
                 <a href="#about"
                     class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors"
-                    role="menuitem" aria-label="Navigate to About Section">About</a>
+                    role="menuitem" aria-label="Navigate to About Section">会社概要</a>
                 <a href="#contact"
                     class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors"
-                    role="menuitem" aria-label="Navigate to Contact Section">Contact</a>
+                    role="menuitem" aria-label="Navigate to Contact Section">お問い合わせ</a>
                 <span class="header-nav-separator my-2">—</span>
                 <a href="index.html"
-                    class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors hidden"
+                    class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors"
                     role="menuitem">En</a>
                 <a href="index.ja.html"
-                    class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors"
+                    class="header-nav-link-mobile block py-2 px-4 text-gray-600 hover:text-[var(--accent-color)] hover:bg-gray-50 w-full text-center transition-colors hidden"
                     role="menuitem">日本語</a>
             </div>
         </header>
@@ -260,16 +238,16 @@
                 <div class="relative z-10 max-w-3xl mx-auto px-6 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
                     <div class="font-bold mb-6 animate" style="font-size: clamp(3rem, 2vw + 2.5rem, 4.5rem);">
                         Ful<span class="text-[var(--accent-color)]">O</span></div>
+                    <br>
                     <p class="text-xl sm:text-2xl font-normal text-white mb-10 animate delay-1">
-                        Israel | Japan Business Matchmaking</p>
+                        イスラエル | 日本ビジネスマッチング</p>
                     <p class="text-lg sm:text-xl font-light text-gray-200 mb-12 animate delay-3">
-                        We connect Israeli innovation with Japanese markets, creating strategic partnerships that drive
-                        growth and international success.
-                    </p>
+                        イスラエルの革新 × 日本の市場 <br>
+                        成長と国際的な成功を実現する戦略的パートナーシップを築きます</p>
                     <a href="#contact"
                         class="inline-block bg-[var(--accent-color)] text-[var(--text-on-accent-color)] hover:bg-[var(--accent-color-dark)] text-xs font-medium py-6 px-8 shadow-lg hover:shadow-xl transition-colors duration-300 ease-in-out transform hover:-translate-y-1 animate delay-3 uppercase tracking-wider"
                         aria-label="Get in Touch with FulO">
-                        Get in Touch
+                        ご相談はこちら
                     </a>
                 </div>
             </section>
@@ -278,10 +256,9 @@
                 <div class="container mx-auto relative z-10">
                     <div class="text-center mb-12 sm:mb-16">
                         <h2 class="font-extralight text-[var(--primary-color)] mb-8 tracking-tight"
-                            style="font-size: clamp(2.5rem, 1.5vw + 2rem, 3.25rem);">Services</h2>
+                            style="font-size: clamp(2.5rem, 1.5vw + 2rem, 3.25rem);">事業内容</h2>
                         <p class="text-lg text-[var(--text-muted-color)] max-w-2xl mx-auto leading-relaxed">
-                            Specialized expertise to facilitate your business
-                            growth between Israel and Japan.</p>
+                            イスラエルと日本を繋ぐ <br> ビジネス成長のための専門的なサポート</p>
                     </div>
                     <div class="grid md:grid-cols-3 gap-8 lg:gap-12 justify-center mx-auto">
                         <div
@@ -306,11 +283,10 @@
                                 </svg>
                             </div>
                             <h3 class="text-2xl font-semibold text-[var(--primary-color)] mb-4">
-                                Business Matchmaking</h3>
+                                ビジネスマッチング
+                            </h3>
                             <p class="text-[var(--text-muted-color)] leading-[1.75] mb-5">
-                                We identify and connect you with strategic partners, leveraging our deep
-                                understanding of both Israeli and Japanese business landscapes to foster meaningful
-                                partnerships.
+                                イスラエルと日本、両国のビジネスを熟知した私たちがお客様に最適な戦略的パートナーをご紹介します。
                             </p>
                             <div class="w-16 h-px bg-[var(--accent-color)] mx-auto mt-6 mb-0"></div>
                         </div>
@@ -324,11 +300,10 @@
                                 </svg>
                             </div>
                             <h3 class="text-2xl font-semibold text-[var(--primary-color)] mb-4">
-                                Market Entry Strategy
+                                市場参入戦略
                             </h3>
                             <p class="text-[var(--text-muted-color)] leading-[1.75] mb-5">
-                                Navigate the complexities of entering new markets with our tailored guidance for
-                                successful market penetration across cultural and regulatory boundaries.
+                                文化や規制の違いを乗り越え、確かな市場浸透を実現するために、お客様一人ひとりに合わせた戦略をご提案します。
                             </p>
                             <div class="w-16 h-px bg-[var(--accent-color)] mx-auto mt-6 mb-0"></div>
                         </div>
@@ -348,10 +323,9 @@
                                 </svg>
                             </div>
                             <h3 class="text-2xl font-semibold text-[var(--primary-color)] mb-4">
-                                Cultural Bridge</h3>
+                                文化の架け橋</h3>
                             <p class="text-[var(--text-muted-color)] leading-[1.75] mb-5">
-                                Overcome cultural barriers with our expertise in both Japanese and Israeli business
-                                cultures, ensuring effective communication and successful collaboration.
+                                日本とイスラエルのビジネス文化を深く理解した私たちが、効果的な対話と信頼関係を築くための架け橋となります。
                             </p>
                             <div class="w-16 h-px  bg-[var(--accent-color)] mx-auto mt-6 mb-0"></div>
                         </div>
@@ -363,15 +337,10 @@
                 <div class="container mx-auto px-6 sm:px-6 lg:px-8 max-w-screen-xl">
                     <div class="text-center mb-16 sm:mb-20">
                         <h2 class="font-extralight text-[var(--primary-color)] mb-8 tracking-tight"
-                            style="font-size: clamp(2.5rem, 1.5vw + 2rem, 3.25rem);">About
+                            style="font-size: clamp(2.5rem, 1.5vw + 2rem, 3.25rem);">会社概要
                         </h2>
                         <p class="text-lg text-[var(--text-muted-color)] max-w-2xl mx-auto leading-relaxed">
-                            With over two decades of expertise in international business development, our leadership
-                            knows that true collaboration between Israeli and Japanese enterprises is built on more than
-                            just innovative ideas. It requires a foundation of trust, precision, and profound cultural
-                            understanding. We specialize in bridging this gap—applying careful listening and meticulous
-                            attention to detail to ensure Israeli innovation aligns seamlessly with Japanese quality
-                            standards, creating lasting partnerships that benefit both sides.
+                            代表者は20年以上に渡り、ビジネスの世界で経験を積んできました。日本とイスラエルの企業が真に手を取り合うためには、単なるアイデアの共有だけでは足りません。そこには「信頼関係」「精度へのこだわり」「文化への深い理解」が必要不可欠です。私たちは両国の違いを繋ぐ“架け橋”として、お客様の声にじっくりと耳を傾け、細部にまで心を配りながら、イスラエルの技術力と日本の品質基準の調和をサポートします。&nbsp;そして、両国にとって価値のある長期的な繋がりを築きます。
                         </p>
                     </div>
                     <div class="grid lg:grid-cols-5 gap-12 items-start">
@@ -380,14 +349,12 @@
                                 <h3
                                     class="text-3xl font-semibold text-[var(--primary-color)] tracking-tight mb-3 text-left">
                                     Nadav Sella</h3>
-                                <p class="text-xl text-[var(--accent-color)] font-medium mb-4">Founder
-                                    &amp; Managing&nbsp;Director</p>
+                                <p class="text-xl text-[var(--accent-color)] font-medium mb-4">
+                                    創業者・経営責任者
+                                </p>
                                 <p class="text-[var(--text-base-color)] leading-relaxed mb-6">
-                                    With over 20 years of global B2B experience and 5 years of relocation in Tokyo,
-                                    Japan, Nadav Sella brings unparalleled expertise in connecting businesses across
-                                    cultures.
-                                    His extensive experience includes managing global sales teams and overseeing
-                                    multi-million dollar business&nbsp;units.</p>
+                                    グローバルなB2Bビジネスの現場で20年以上の経験を持ち、日本においても5年間に渡りビジネスの最前線で活躍してきました。&nbsp;異なる文化をつなぐビジネス展開を得意とし、これまでにグローバル営業チームのマネジメントや数億円規模の事業部門の運営など、幅広い実績を重ねています。
+                                </p>
                             </div>
 
                             <div class="grid sm:grid-cols-3 gap-8 text-center py-8 border-t border-b border-gray-200">
@@ -430,9 +397,9 @@
                 <div class="container mx-auto px-6 sm:px-6 lg:px-8 max-w-screen-xl">
                     <div class="text-center mb-12 sm:mb-16">
                         <h2 class="font-extralight text-[var(--primary-color)] mb-8 tracking-tight"
-                            style="font-size: clamp(2.5rem, 1.5vw + 2rem, 3.25rem);">Advisory Board</h2>
+                            style="font-size: clamp(2.5rem, 1.5vw + 2rem, 3.25rem);">当社のアドバイザー</h2>
                         <p class="text-lg text-[var(--text-muted-color)] max-w-2xl mx-auto leading-relaxed">
-                            Guidance from esteemed experts in their fields.
+                            各分野の有識者による的確なアドバイスとサポート
                         </p>
                     </div>
 
@@ -464,13 +431,12 @@
                                             </svg>
                                         </a>
                                     </h3>
-                                    <p class="text-md text-[var(--accent-color)] font-medium mb-3">Advisory Board Member
+                                    <p class="text-md text-[var(--accent-color)] font-medium mb-3">諮問委員会メンバー
                                     </p>
                                     <p class="text-sm text-[var(--text-muted-color)] leading-relaxed flex-grow">
-                                        tellus Co., Ltd – CEO | Scientist | Pharmacist | Executive in Fortune 100 |
-                                        Advisor to top 10 next unicorn fintech company | Advisor to cybersecurity
-                                        company | Business Consultant | Training | Executive Mentoring | Coaching.
-                                        tellus Co., Ltd. · WASEDA Business School. Greater Tokyo Area.
+                                        tellus株式会社 – CEO｜科学者｜薬剤師｜フォーチュン100企業の元幹部｜次のユニコーン候補とされるフィンテック企業（トップ10）のアドバイザー｜
+                                        サイバーセキュリティ企業のアドバイザー｜ビジネスコンサルタント｜研修講師｜エグゼクティブメンタリング｜コーチング｜
+                                        tellus株式会社｜早稲田大学ビジネススクール｜東京都圏在住
                                     </p>
                                 </div>
                             </div>
@@ -500,10 +466,10 @@
                                             </svg>
                                         </a>
                                     </h3>
-                                    <p class="text-md text-[var(--accent-color)] font-medium mb-3">Advisory Board Member
+                                    <p class="text-md text-[var(--accent-color)] font-medium mb-3">諮問委員会メンバー
                                     </p>
                                     <p class="text-sm text-[var(--text-muted-color)] leading-relaxed flex-grow">
-                                        COO | Merchandise Director | GM BabiesRus Japan @ ToysRUs Japan | MBA
+                                        COO（最高執行責任者）｜マーチャンダイズディレクター（商品統括責任者）｜トイザらス・ジャパンにてベビーザらス事業部 ゼネラルマネージャー｜MBA取得
                                     </p>
                                 </div>
                             </div>
@@ -536,10 +502,10 @@
                                             </svg>
                                         </a>
                                     </h3>
-                                    <p class="text-md text-[var(--accent-color)] font-medium mb-3">Advisory Board Member
+                                    <p class="text-md text-[var(--accent-color)] font-medium mb-3">諮問委員会メンバー
                                     </p>
-                                    <p class="text-sm text-[var(--text-muted-color)] leading-relaxed flex-grow">Japan
-                                        Sales Expert (Direct, Channel) | 20+ Years of B2B sales experience</p>
+                                    <p class="text-sm text-[var(--text-muted-color)] leading-relaxed flex-grow">
+                                        日本市場における営業のエキスパート<br>（直販・代理店営業）｜B2B営業経験20年以上</p>
                                 </div>
                             </div>
                         </div>
@@ -570,12 +536,11 @@
                     <div class="text-center mb-16 sm:mb-20">
                         <h2 class="font-extralight text-[var(--primary-color)] mb-6 tracking-tight"
                             style="font-size: clamp(2.5rem, 1.5vw + 2rem, 3.25rem);">
-                            Let's Connect
+                            お問い合わせ
                         </h2>
                         <p class="text-lg text-[var(--text-muted-color)] max-w-2xl mx-auto leading-relaxed">
-                            Ready to explore opportunities in the Israeli-Japanese business landscape? We're here to
-                            help guide your journey.
-                        </p>
+                            イスラエルと日本のビジネス環境における新たなチャンスを探してみませんか？<br>
+                            その第一歩を私たちが誠心誠意サポートいたします。</p>
                     </div>
 
                     <div class="grid lg:grid-cols-2 gap-16 items-start max-w-6xl mx-auto">
@@ -585,9 +550,10 @@
                                 <div>
                                     <h3 class="text-2xl font-light text-[var(--primary-color)] mb-4">Get in Touch</h3>
                                     <p class="text-[var(--text-muted-color)] leading-relaxed text-lg">
-                                        Whether you're an Israeli company looking to expand into Japan, or a Japanese
-                                        business seeking innovative Israeli partnerships, we're here to facilitate your
-                                        success.
+                                        日本への進出をご検討されているイスラエル企業の方も、また革新的なイスラエルとのパートナーシップをお求めの日本企業の方も、当社はあなたの成功を全力でサポートします。
+                                    </p><br>
+                                    <p class="text-[var(--text-muted-color)] leading-relaxed text-lg">
+                                        イスラエルのテクノロジー企業にご興味がございましたら、ご紹介を兼ねた打ち合わせも可能です。
                                     </p>
                                 </div>
 
@@ -600,8 +566,7 @@
                                             </svg>
                                         </div>
                                         <div>
-                                            <h4 class="text-base font-medium text-[var(--primary-color)] mb-1">Email
-                                            </h4>
+                                            <h4 class="text-base font-medium text-[var(--primary-color)] mb-1">メール</h4>
                                             <a href="mailto:info@fulo.life"
                                                 class="text-[var(--accent-color)] hover:text-[var(--accent-color-dark)] transition-colors">info@fulo.life</a>
                                         </div>
@@ -617,8 +582,7 @@
                                             </svg>
                                         </div>
                                         <div>
-                                            <h4 class="text-base font-medium text-[var(--primary-color)] mb-1">Office
-                                                Location</h4>
+                                            <h4 class="text-base font-medium text-[var(--primary-color)] mb-1">所在地</h4>
                                             <address class="not-italic text-[var(--text-muted-color)]" itemscope
                                                 itemtype="https://schema.org/PostalAddress">
                                                 32 Shlomo Ben Yosef<br>
@@ -638,7 +602,7 @@
                                 <div class="grid sm:grid-cols-2 gap-6">
                                     <div>
                                         <label for="name"
-                                            class="block text-sm font-medium text-[var(--text-base-color)] mb-2">Name</label>
+                                            class="block text-sm font-medium text-[var(--text-base-color)] mb-2">お名前</label>
                                         <input type="text" id="name" name="name" required
                                             class="w-full px-4 py-3 bg-white border border-solid border-[rgb(137,145,157)] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] transition-all"
                                             aria-required="true">
@@ -646,7 +610,7 @@
 
                                     <div>
                                         <label for="email"
-                                            class="block text-sm font-medium text-[var(--text-base-color)] mb-2">Email</label>
+                                            class="block text-sm font-medium text-[var(--text-base-color)] mb-2">メールアドレス</label>
                                         <input type="email" id="email" name="email" required
                                             class="w-full px-4 py-3 bg-white border border-solid border-[rgb(137,145,157)] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] transition-all"
                                             aria-required="true">
@@ -655,7 +619,7 @@
 
                                 <div>
                                     <label for="subject"
-                                        class="block text-sm font-medium text-[var(--text-base-color)] mb-2">Subject</label>
+                                        class="block text-sm font-medium text-[var(--text-base-color)] mb-2">件名</label>
                                     <input type="text" id="subject" name="subject" required
                                         class="w-full px-4 py-3 bg-white border border-solid border-[rgb(137,145,157)] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] transition-all"
                                         aria-required="true" maxlength="150">
@@ -663,9 +627,9 @@
 
                                 <div>
                                     <label for="company"
-                                        class="block text-sm font-medium text-[var(--text-base-color)] mb-2">Company
+                                        class="block text-sm font-medium text-[var(--text-base-color)] mb-2">会社名
                                         <span class="text-xs text-[var(--text-muted-color)]"
-                                            aria-label="optional">(Optional)</span>
+                                            aria-label="optional">(任意)</span>
                                     </label>
                                     <input type="text" id="company" name="company"
                                         class="w-full px-4 py-3 bg-white border border-solid border-[rgb(137,145,157)] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] transition-all"
@@ -674,7 +638,7 @@
 
                                 <div>
                                     <label for="message"
-                                        class="block text-sm font-medium text-[var(--text-base-color)] mb-2">Message</label>
+                                        class="block text-sm font-medium text-[var(--text-base-color)] mb-2">メッセージ</label>
                                     <textarea id="message" name="message" rows="6" required
                                         class="w-full px-4 py-3 bg-white border border-solid border-[rgb(137,145,157)] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] transition-all resize-none"
                                         aria-required="true" maxlength="2000"></textarea>
@@ -682,7 +646,7 @@
 
                                 <button type="submit"
                                     class="w-full bg-[var(--accent-color)] text-[var(--text-on-accent-color)] hover:bg-[var(--accent-color-dark)] font-medium py-4 px-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-0.5 uppercase text-sm tracking-wider">
-                                    Send Message
+                                    送信
                                 </button>
                                 <div id="form-response" class="mt-4"></div>
                             </form>
@@ -708,8 +672,8 @@
                                 aria-label="Return to top of page">Ful<span
                                     class="text-[var(--accent-color)]">O</span></a>
                             <p class="text-gray-400 text-sm leading-relaxed max-w-sm md:max-w-none mx-auto md:mx-0">
-                                Bridging Israeli innovation with Japanese markets through strategic partnerships and
-                                cultural understanding.
+                                イスラエルのイノベーションを日本のマーケットへ <br>
+                                戦略的な繋がりと文化への理解でビジネスをより快適に
                             </p>
                         </div>
 
@@ -720,11 +684,11 @@
                                 Quick Links</h3>
                             <ul class="space-y-3">
                                 <li><a href="#services"
-                                        class="text-gray-400 hover:text-white transition-colors">Services</a></li>
-                                <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a>
+                                        class="text-gray-400 hover:text-white transition-colors">事業内容</a></li>
+                                <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">会社概要</a>
                                 </li>
                                 <li><a href="#contact"
-                                        class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                                        class="text-gray-400 hover:text-white transition-colors">お問い合わせ</a></li>
                             </ul>
                         </div>
 
@@ -734,7 +698,7 @@
                                 class="text-white text-sm font-semibold uppercase tracking-wider mb-4 mt-1 md:mb-6 md:mt-0">
                                 Contact</h3>
                             <div class="space-y-3">
-                                <p class="text-gray-400">Nadav Sella, Founder & Managing Director</p>
+                                <p class="text-gray-400">Nadav Sella -創業者・経営責任者- </p>
                                 <div class="flex items-center justify-center md:justify-end space-x-4">
                                     <a href="mailto:info@fulo.life"
                                         class="text-[var(--accent-color)] hover:text-white transition-colors">info@fulo.life</a>
@@ -756,13 +720,12 @@
                     <div class="border-t border-gray-700/50 mt-8 pt-8">
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-x-8 items-center w-full">
                             <div class="flex flex-nowrap justify-center md:justify-start md:text-left">
-                                <a href="privacy.html" target="_blank" rel="noopener noreferrer"
+                                <a href="privacy.ja.html" target="_blank" rel="noopener noreferrer"
                                     class="text-white hover:-translate-y-0.5 transition-all inline-block text-xs"
-                                    title="Privacy Policy & reCAPTCHA">Privacy</a>
+                                    title="Privacy Policy & reCAPTCHA">プライバシー</a>
                                 <span class="text-gray-500 text-xs">&nbsp;|&nbsp;</span>
-                                <a href="terms.html" target="_blank" rel="noopener noreferrer"
-                                    class="text-white hover:-translate-y-0.5 transition-all inline-block text-xs">Terms
-                                    of Use</a>
+                                <a href="terms.ja.html" target="_blank" rel="noopener noreferrer"
+                                    class="text-white hover:-translate-y-0.5 transition-all inline-block text-xs">利用規約</a>
                                 <span class="text-gray-500 text-xs">&nbsp;|&nbsp;</span>
                                 <button type="button" id="cookie-link"
                                     class="text-white hover:-translate-y-0.5 transition-all inline-block text-xs bg-transparent border-0 p-0 cursor-pointer font-inherit">Cookies</button>
@@ -783,31 +746,29 @@
 
     <div id="cookie-popup" class="w-fit mx-auto">
         <div id="cookie-initial-view">
-            <p class="mb-4 text-center">We use cookies for better user experience.</p>
+            <p class="mb-4 text-center">当サイトはCookie(クッキー)を使用します</p>
             <div class="flex flex-col gap-4 sm:flex-row sm:gap-6 justify-between">
                 <button id="cookie-accept"
-                    class="px-4 py-2 bg-[var(--accent-color)] text-white rounded-lg hover:bg-[var(--accent-color-dark)] transition-colors">Accept</button>
+                    class="px-4 py-2 bg-[var(--accent-color)] text-white rounded-lg hover:bg-[var(--accent-color-dark)] transition-colors">許可する</button>
                 <button id="cookie-manage"
-                    class="px-4 py-2 bg-[var(--accent-color)] text-white rounded-lg hover:bg-[var(--accent-color-dark)] transition-colors">Manage</button>
+                    class="px-4 py-2 bg-[var(--accent-color)] text-white rounded-lg hover:bg-[var(--accent-color-dark)] transition-colors">管理</button>
                 <button id="cookie-reject"
-                    class="px-4 py-2 bg-[var(--accent-color)] text-white rounded-lg hover:bg-[var(--accent-color-dark)] transition-colors">Reject</button>
+                    class="px-4 py-2 bg-[var(--accent-color)] text-white rounded-lg hover:bg-[var(--accent-color-dark)] transition-colors">拒否する</button>
             </div>
         </div>
 
         <div id="cookie-manage-view" style="display: none; text-align: left;">
-            <h3 class="mb-4 font-semibold">Manage Consent Preferences</h3>
+            <h3 class="mb-4 font-semibold">Cookie(クッキー)の管理</h3>
             <div class="mb-4">
                 <label class="flex items-center">
                     <input type="checkbox" id="cookie-analytics" checked class="mr-4">
-                    Analytics Cookies
+                    アナリティクスCookie
                 </label>
-                <p class="text-xs text-gray-500 mt-1">These cookies help us understand site usage and improve
-                    performance.</p>
+                <p class="text-xs text-gray-500 mt-1">これらのCookieは、サイトの使用状況を把握し、パフォーマンスを向上させるのに役立ちます。</p>
             </div>
             <div class="text-center">
                 <button id="cookie-save"
-                    class="px-4 py-2 bg-[var(--accent-color)] text-white rounded-lg hover:bg-[var(--accent-color-dark)] transition-colors">Save
-                    Preferences</button>
+                    class="px-4 py-2 bg-[var(--accent-color)] text-white rounded-lg hover:bg-[var(--accent-color-dark)] transition-colors">設定を保存</button>
             </div>
         </div>
     </div>
