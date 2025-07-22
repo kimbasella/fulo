@@ -12,27 +12,28 @@ function calculateHash(filePath) {
 
 // Function to update file references in HTML
 function updateHtmlReferences() {
-    const htmlFile = 'index.html';
-    let htmlContent = fs.readFileSync(htmlFile, 'utf8');
-
-    // CSS and JS files
+    const htmlFiles = ['index.html', 'index.ja.html'];
     const cssHash = calculateHash('index.min.css');
     const jsHash = calculateHash('index.min.js');
 
-    // Update CSS reference
-    htmlContent = htmlContent.replace(
-        /(index\.min\.css)(\?v=[a-f0-9]*)?/g,
-        `$1?v=${cssHash}`
-    );
+    htmlFiles.forEach(htmlFile => {
+        let htmlContent = fs.readFileSync(htmlFile, 'utf8');
 
-    // Update JS reference
-    htmlContent = htmlContent.replace(
-        /(index\.min\.js)(\?v=[a-f0-9]*)?/g,
-        `$1?v=${jsHash}`
-    );
+        // Update CSS reference
+        htmlContent = htmlContent.replace(
+            /(index\.min\.css)(\?v=[a-f0-9]*)?/g,
+            `$1?v=${cssHash}`
+        );
 
-    fs.writeFileSync(htmlFile, htmlContent);
-    console.log('✅ Updated version hashes in index.html');
+        // Update JS reference
+        htmlContent = htmlContent.replace(
+            /(index\.min\.js)(\?v=[a-f0-9]*)?/g,
+            `$1?v=${jsHash}`
+        );
+
+        fs.writeFileSync(htmlFile, htmlContent);
+        console.log(`✅ Updated version hashes in ${htmlFile}`);
+    });
 }
 
 // Function to update CSS background image references

@@ -94,66 +94,67 @@ document.addEventListener('DOMContentLoaded', function () {
     const thankYouMessage = document.getElementById('thankYouMessage');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
+        contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-
-            // Disable the submit button to prevent multiple submissions
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            if (submitButton) {
-                submitButton.disabled = true;
-                submitButton.textContent = 'Sending...';
-            }
-
-            try {
-                const token = await grecaptcha.execute('6LcEFmYrAAAAAEiA7b5PxpXHcpgWpO5P9HX8ZLVN', { action: 'submit' });
-
-                const formData = new FormData(contactForm);
-                formData.append('g-recaptcha-response', token);
-
-                const scriptURL = 'https://script.google.com/macros/s/AKfycby_VV-NDhyZDTEaBkN7aEdsDcreIpp0JUX0eWMcUHpXeKANx94wVOWPXhNBvDZchY70Zw/exec';
-
-                // We are not using FormData directly to avoid preflight issues.
-                // Instead, we use URLSearchParams which sends as 'application/x-www-form-urlencoded'.
-                const body = new URLSearchParams(formData);
-
-                const response = await fetch(scriptURL, {
-                    method: 'POST',
-                    body: body,
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Server error: ${response.status}`);
+            grecaptcha.ready(async function () {
+                // Disable the submit button to prevent multiple submissions
+                const submitButton = contactForm.querySelector('button[type="submit"]');
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Sending...';
                 }
 
-                // Hide the form and show the custom thank you message
-                contactForm.style.display = 'none';
-                if (thankYouMessage) {
-                    thankYouMessage.classList.remove('hidden');
-                } else {
-                    console.warn('Thank you message element not found.');
-                    // Optionally reset button if thank you message fails to show
+                try {
+                    const token = await grecaptcha.execute('6LcEFmYrAAAAAEiA7b5PxpXHcpgWpO5P9HX8ZLVN', { action: 'submit' });
+
+                    const formData = new FormData(contactForm);
+                    formData.append('g-recaptcha-response', token);
+
+                    const scriptURL = 'https://script.google.com/macros/s/AKfycby_VV-NDhyZDTEaBkN7aEdsDcreIpp0JUX0eWMcUHpXeKANx94wVOWPXhNBvDZchY70Zw/exec';
+
+                    // We are not using FormData directly to avoid preflight issues.
+                    // Instead, we use URLSearchParams which sends as 'application/x-www-form-urlencoded'.
+                    const body = new URLSearchParams(formData);
+
+                    const response = await fetch(scriptURL, {
+                        method: 'POST',
+                        body: body,
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Server error: ${response.status}`);
+                    }
+
+                    // Hide the form and show the custom thank you message
+                    contactForm.style.display = 'none';
+                    if (thankYouMessage) {
+                        thankYouMessage.classList.remove('hidden');
+                    } else {
+                        console.warn('Thank you message element not found.');
+                        // Optionally reset button if thank you message fails to show
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                            submitButton.textContent = 'Send Message';
+                        }
+                    }
+                    // contactForm.reset(); // Optionally keep this if you want to reset when showing again
+
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+                    let errorMessage = 'There was an error sending your message. Please try again.';
+                    if (error.message.includes('Server error')) {
+                        errorMessage = 'There was a server issue. Please try again later.';
+                    } else if (error.message.includes('NetworkError') || error.message.includes('Failed to fetch')) {
+                        errorMessage = 'Network error. Please check your internet connection and try again.';
+                    }
+                    alert(errorMessage);
+                    // Re-enable the submit button in case of error
                     if (submitButton) {
                         submitButton.disabled = false;
                         submitButton.textContent = 'Send Message';
                     }
                 }
-                // contactForm.reset(); // Optionally keep this if you want to reset when showing again
-
-            } catch (error) {
-                console.error('Error submitting form:', error);
-                let errorMessage = 'There was an error sending your message. Please try again.';
-                if (error.message.includes('Server error')) {
-                    errorMessage = 'There was a server issue. Please try again later.';
-                } else if (error.message.includes('NetworkError') || error.message.includes('Failed to fetch')) {
-                    errorMessage = 'Network error. Please check your internet connection and try again.';
-                }
-                alert(errorMessage);
-                // Re-enable the submit button in case of error
-                if (submitButton) {
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Send Message';
-                }
-            }
+            });
         });
     }
 
