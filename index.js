@@ -127,6 +127,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Hide the form and show the custom thank you message
                     contactForm.style.display = 'none';
+                    // Make the container background transparent
+                    const contactFormContainer = document.getElementById('contact-form-container');
+                    if (contactFormContainer) {
+                        contactFormContainer.style.background = 'transparent';
+                    }
                     if (thankYouMessage) {
                         thankYouMessage.classList.remove('hidden');
                         setTimeout(() => {
