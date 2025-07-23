@@ -129,6 +129,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     contactForm.style.display = 'none';
                     if (thankYouMessage) {
                         thankYouMessage.classList.remove('hidden');
+                        setTimeout(() => {
+                            const targetPosition = thankYouMessage.getBoundingClientRect().top + window.pageYOffset - (window.innerHeight / 2) + (thankYouMessage.offsetHeight / 2);
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }, 100);
                     } else {
                         console.warn('Thank you message element not found.');
                         // Optionally reset button if thank you message fails to show
