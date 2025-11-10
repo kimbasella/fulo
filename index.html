@@ -61,6 +61,35 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/images/icons/favicon.svg">
 
+    <!-- Preconnect for faster YouTube embeds -->
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://i.ytimg.com">
+    <link rel="dns-prefetch" href="https://www.youtube.com">
+    <link rel="dns-prefetch" href="https://i.ytimg.com">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "Japanese Market Localization for MultiKol - Voice Biometrics",
+      "description": "A case study video demonstrating the localization of MultiKol - Voice Biometrics' marketing materials for the Japanese market, including script, pacing, and on-screen copy.",
+      "thumbnailUrl": "https://img.youtube.com/vi/LEocA6dLkCU/maxresdefault.jpg",
+      "uploadDate": "2024-03-02T00:00:00Z",
+      "duration": "PT2M26S",
+      "url": "https://fulo.life/",
+      "contentUrl": "https://www.youtube.com/watch?v=LEocA6dLkCU",
+      "embedUrl": "https://www.youtube.com/embed/LEocA6dLkCU",
+      "publisher": {
+        "@type": "Organization",
+        "name": "FulO",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://fulo.life/images/icons/favicon-256x256.png"
+        }
+      }
+    }
+    </script>
+
     <!-- Primary Meta Tags -->
     <meta name="title" content="FulO - Israel | Japan Business Matchmaking">
     <meta name="description"
@@ -340,6 +369,38 @@
                             <div class="w-16 h-px  bg-[var(--accent-color)] mx-auto mt-6 mb-0"></div>
                         </div>
                     </div>
+
+                    <!-- Localization in Action Section -->
+                    <div class="pt-20 text-center">
+                        <h3 class="text-3xl font-semibold text-[var(--primary-color)] mb-6">Localization in Action</h3>
+                        <p class="text-lg text-[var(--text-muted-color)] max-w-3xl mx-auto leading-relaxed mb-10">
+                            Work sample: Introducing <a href="https://multikol.ai/" target="_blank"
+                                rel="noopener noreferrer" class="text-[var(--accent-color)] hover:underline">MultiKol -
+                                Voice Biometerics</a> to the Japanese market.
+                        </p>
+                        <div id="video-root" class="relative max-w-4xl mx-auto rounded-lg overflow-hidden shadow-2xl"
+                            style="aspect-ratio: 16 / 9;">
+                            <div id="video-poster-overlay" role="button"
+                                aria-label="Play MultiKol - Voice Biometrics localization video"
+                                class="absolute inset-0 z-10 flex cursor-pointer items-center justify-center bg-cover bg-center transition-all duration-500"
+                                style="background-image: url('https://img.youtube.com/vi/LEocA6dLkCU/maxresdefault.jpg');">
+                                <svg class="h-20 w-20 text-white opacity-80" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div id="video-fade" class="absolute inset-0"
+                                style="z-index:5; background:black; opacity:1; transition: opacity 500ms ease;"></div>
+                            <iframe id="yt-iframe"
+                                class="absolute inset-0 z-0 w-full h-full opacity-0 transition-opacity duration-300"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+                                style="pointer-events: none;"></iframe>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
@@ -792,6 +853,39 @@
             </div>
         </div>
     </div>
+    <script>
+        (function () {
+            var poster = document.getElementById('video-poster');
+            var iframe = document.getElementById('yt-iframe');
+            var fader = document.getElementById('video-fade');
+            if (!poster || !iframe) return;
+            var src = 'https://www.youtube.com/embed/LEocA6dLkCU?autoplay=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080';
+
+            poster.addEventListener('click', function onClick() {
+                // Immediate feedback: contract poster to center revealing black behind
+                poster.style.clipPath = 'circle(0% at 50% 50%)';
+                poster.style.opacity = '0';
+                poster.style.pointerEvents = 'none';
+                if (!iframe.getAttribute('src')) {
+                    iframe.setAttribute('src', src);
+                }
+                iframe.addEventListener('load', function handleLoad() {
+                    iframe.removeEventListener('load', handleLoad);
+                    // Crossfade
+                    iframe.style.opacity = '1';
+                    iframe.style.pointerEvents = 'auto';
+                    // Reveal video from black shortly after load
+                    setTimeout(function () {
+                        if (fader) {
+                            fader.style.opacity = '0';
+                            setTimeout(function () { fader.style.display = 'none'; }, 500);
+                        }
+                        poster.style.display = 'none';
+                    }, 500);
+                });
+            }, { once: true });
+        })();
+    </script>
 </body>
 
 </html>
