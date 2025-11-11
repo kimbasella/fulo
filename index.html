@@ -379,11 +379,11 @@
                                 Voice Biometerics</a> to the Japanese market.
                         </p>
                         <div id="video-root" class="relative max-w-4xl mx-auto rounded-lg overflow-hidden shadow-2xl"
-                            style="aspect-ratio: 16 / 9;">
+                            style="aspect-ratio: 16 / 9; padding-top: 56.25%;">
                             <div id="video-poster-overlay" role="button"
                                 aria-label="Play MultiKol - Voice Biometrics localization video"
                                 class="absolute inset-0 z-10 flex cursor-pointer items-center justify-center bg-cover bg-center transition-all duration-500"
-                                style="background-image: url('https://img.youtube.com/vi/LEocA6dLkCU/maxresdefault.jpg');">
+                                style="background-image: url('https://img.youtube.com/vi/LEocA6dLkCU/maxresdefault.jpg'); background-size: cover; background-position: center; transition: opacity 500ms ease, transform 500ms ease;">
                                 <svg class="h-20 w-20 text-white opacity-80" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
                                         d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
@@ -862,16 +862,19 @@
             var src = 'https://www.youtube.com/embed/LEocA6dLkCU?autoplay=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080';
 
             poster.addEventListener('click', function onClick() {
-                // Immediate feedback: contract poster to center revealing black behind
-                poster.style.clipPath = 'circle(0% at 50% 50%)';
+                // Immediate feedback: fade poster with scale animation (iOS-friendly)
                 poster.style.opacity = '0';
+                poster.style.transform = 'scale(0.95)';
                 poster.style.pointerEvents = 'none';
+                
+                // Set iframe src immediately to start loading
                 if (!iframe.getAttribute('src')) {
                     iframe.setAttribute('src', src);
                 }
+                
                 iframe.addEventListener('load', function handleLoad() {
                     iframe.removeEventListener('load', handleLoad);
-                    // Crossfade
+                    // Crossfade video in
                     iframe.style.opacity = '1';
                     iframe.style.pointerEvents = 'auto';
                     // Reveal video from black shortly after load
@@ -881,8 +884,8 @@
                             setTimeout(function () { fader.style.display = 'none'; }, 500);
                         }
                         poster.style.display = 'none';
-                    }, 500);
-                });
+                    }, 300);
+                }, { once: true });
             }, { once: true });
         })();
     </script>
