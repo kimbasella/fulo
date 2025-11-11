@@ -1,10 +1,16 @@
 <!-- xFeinschmecker | www.feinschmecker.dev -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background:#003366">
 
 <head>
     <meta charset="UTF-8">
+
+    <!-- Preload Critical Fonts - Early for faster loading -->
+    <link rel="preload" href="fonts/montserrat-v30-latin-regular.woff2" as="font" type="font/woff2" crossorigin
+        fetchpriority="high">
+    <link rel="preload" href="fonts/montserrat-v30-latin-700.woff2" as="font" type="font/woff2" crossorigin
+        fetchpriority="high">
 
     <script>
         // Dispatch custom event to signal page is ready for animations
@@ -20,9 +26,6 @@
             }
         </style>
     </noscript>
-
-    <!-- Preload Richard Taylor's image for faster loading on mobile -->
-    <link rel="preload" href="images/profiles/Richard_Taylor-240x240.webp" as="image">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="all">
@@ -43,43 +46,12 @@
     <!-- Preload Critical Resources -->
     <link rel="preload" as="image" href="images/backgrounds/tel-aviv-night-800px.webp" fetchpriority="high">
     <link rel="preload" as="image" href="images/profiles/nadav-profile-512x740.webp" fetchpriority="high">
-    <link rel="preload" href="fonts/montserrat-v30-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="fonts/montserrat-v30-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
     <!-- Preload Japanese Fonts -->
     <link rel="preload" href="fonts/NotoSansCJKjp-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/NotoSansCJKjp-Bold.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/images/icons/favicon.svg">
-
-    <!-- Preconnect for faster YouTube embeds -->
-    <link rel="preconnect" href="https://www.youtube.com">
-    <link rel="preconnect" href="https://i.ytimg.com">
-    <link rel="dns-prefetch" href="https://www.youtube.com">
-    <link rel="dns-prefetch" href="https://i.ytimg.com">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "VideoObject",
-      "name": "Japanese Market Localization for MultiKol - Voice Biometrics",
-      "description": "A case study video demonstrating the localization of MultiKol - Voice Biometrics' marketing materials for the Japanese market, including script, pacing, and on-screen copy.",
-      "thumbnailUrl": "https://img.youtube.com/vi/LEocA6dLkCU/maxresdefault.jpg",
-      "uploadDate": "2024-03-02T00:00:00Z",
-      "duration": "PT2M26S",
-      "url": "https://fulo.life/",
-      "contentUrl": "https://www.youtube.com/watch?v=LEocA6dLkCU",
-      "embedUrl": "https://www.youtube.com/embed/LEocA6dLkCU",
-      "publisher": {
-        "@type": "Organization",
-        "name": "FulO",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://fulo.life/images/icons/favicon-256x256.png"
-        }
-      }
-    }
-    </script>
 
     <!-- Primary Meta Tags -->
     <meta name="title" content="FulO - Israel | Japan Business Matchmaking">
@@ -112,15 +84,68 @@
 
     <!-- Critical CSS - Inline to prevent flash -->
     <style>
-        :root{--primary-color:#003366;--accent-color:#2563eb;--accent-color-dark:#1d4ed8;--text-base-color:#374151;--text-muted-color:#4b5563;--bg-light-gray-color:#f9fafb;--bg-primary-color:var(--primary-color);--bg-accent-color:var(--accent-color);--text-on-primary-color:#fff;--text-on-accent-color:#fff}
-        html{background:#003366}
-        body{margin:0;padding:0;font-family:Montserrat,sans-serif;background:#003366;color:#374151}
-        #main-header{position:fixed;top:0;left:0;right:0;z-index:50;background-color:transparent}
-        #header-logo-main{color:#fff}
-        #header-logo-accent{color:#2563eb}
-        #header-hamburger{color:#fff}
-        .header-nav-link{color:#e5e7eb;display:inline-block}
-        .hero{min-height:100vh;background-color:#003366;color:#fff;position:relative;display:flex;align-items:center;justify-content:center;padding-top:5rem;text-align:center}
+        :root {
+            --primary-color: #003366;
+            --accent-color: #2563eb;
+            --accent-color-dark: #1d4ed8;
+            --text-base-color: #374151;
+            --text-muted-color: #4b5563;
+            --bg-light-gray-color: #f9fafb;
+            --bg-primary-color: var(--primary-color);
+            --bg-accent-color: var(--accent-color);
+            --text-on-primary-color: #fff;
+            --text-on-accent-color: #fff
+        }
+
+        html {
+            background: #003366
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Montserrat, sans-serif;
+            background: #003366;
+            color: #374151
+        }
+
+        #main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background-color: transparent
+        }
+
+        #header-logo-main {
+            color: #fff
+        }
+
+        #header-logo-accent {
+            color: #2563eb
+        }
+
+        #header-hamburger {
+            color: #fff
+        }
+
+        .header-nav-link {
+            color: #e5e7eb;
+            display: inline-block
+        }
+
+        .hero {
+            min-height: 100vh;
+            background-color: #003366;
+            color: #fff;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 5rem;
+            text-align: center
+        }
     </style>
 
     <!-- Styles -->
@@ -143,6 +168,28 @@
     </script> -->
 
     <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "Japanese Market Localization for MultiKol - Voice Biometrics",
+      "description": "A case study video demonstrating the localization of MultiKol - Voice Biometrics' marketing materials for the Japanese market, including script, pacing, and on-screen copy.",
+      "thumbnailUrl": "https://img.youtube.com/vi/LEocA6dLkCU/maxresdefault.jpg",
+      "uploadDate": "2024-03-02T00:00:00Z",
+      "duration": "PT2M26S",
+      "url": "https://fulo.life/",
+      "contentUrl": "https://www.youtube.com/watch?v=LEocA6dLkCU",
+      "embedUrl": "https://www.youtube.com/embed/LEocA6dLkCU",
+      "publisher": {
+        "@type": "Organization",
+        "name": "FulO",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://fulo.life/images/icons/favicon-256x256.png"
+        }
+      }
+    }
+    </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -867,12 +914,12 @@
                 poster.style.opacity = '0';
                 poster.style.transform = 'scale(0.95)';
                 poster.style.pointerEvents = 'none';
-                
+
                 // Set iframe src immediately to start loading
                 if (!iframe.getAttribute('src')) {
                     iframe.setAttribute('src', src);
                 }
-                
+
                 iframe.addEventListener('load', function handleLoad() {
                     iframe.removeEventListener('load', handleLoad);
                     // Crossfade video in
