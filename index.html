@@ -440,12 +440,9 @@
                             </div>
                             <div id="video-fade" class="absolute inset-0"
                                 style="z-index:5; background:black; opacity:1; transition: opacity 500ms ease;"></div>
-                            <iframe id="yt-iframe"
+                            <div id="yt-player"
                                 class="absolute inset-0 z-0 w-full h-full opacity-0 transition-opacity duration-300"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
-                                style="pointer-events: none;"></iframe>
+                                style="pointer-events: none;"></div>
                         </div>
                     </div>
 
@@ -901,41 +898,58 @@
             </div>
         </div>
     </div>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        (function () {
+        var player;
+        function onYouTubeIframeAPIReady() {
             var poster = document.getElementById('video-poster-overlay');
-            var iframe = document.getElementById('yt-iframe');
-            var fader = document.getElementById('video-fade');
-            if (!poster || !iframe) return;
-            var src = 'https://www.youtube.com/embed/LEocA6dLkCU?autoplay=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080';
+            if (!poster) return;
 
             poster.addEventListener('click', function onClick() {
-                // Immediate feedback: fade poster with scale animation (iOS-friendly)
+                // Immediate feedback: fade poster with scale animation
                 poster.style.opacity = '0';
                 poster.style.transform = 'scale(0.95)';
                 poster.style.pointerEvents = 'none';
 
-                // Set iframe src immediately to start loading
-                if (!iframe.getAttribute('src')) {
-                    iframe.setAttribute('src', src);
-                }
-
-                iframe.addEventListener('load', function handleLoad() {
-                    iframe.removeEventListener('load', handleLoad);
-                    // Crossfade video in
-                    iframe.style.opacity = '1';
-                    iframe.style.pointerEvents = 'auto';
-                    // Reveal video from black shortly after load
-                    setTimeout(function () {
-                        if (fader) {
-                            fader.style.opacity = '0';
-                            setTimeout(function () { fader.style.display = 'none'; }, 500);
-                        }
-                        poster.style.display = 'none';
-                    }, 300);
-                }, { once: true });
+                // Create the player
+                player = new YT.Player('yt-player', {
+                    videoId: 'LEocA6dLkCU',
+                    playerVars: {
+                        'autoplay': 1,
+                        'rel': 0,
+                        'modestbranding': 1,
+                        'playsinline': 1,
+                        'vq': 'hd1080'
+                    },
+                    events: {
+                        'onReady': onPlayerReady
+                    }
+                });
             }, { once: true });
-        })();
+        }
+
+        function onPlayerReady(event) {
+            var iframe = event.target.getIframe();
+            var fader = document.getElementById('video-fade');
+            var poster = document.getElementById('video-poster-overlay');
+
+            // The API is ready, and the video will start playing automatically
+            // Now handle the crossfade and reveal
+            if (iframe) {
+                iframe.style.opacity = '1';
+                iframe.style.pointerEvents = 'auto';
+            }
+
+            setTimeout(function () {
+                if (fader) {
+                    fader.style.opacity = '0';
+                    setTimeout(function () { fader.style.display = 'none'; }, 500);
+                }
+                if (poster) {
+                    poster.style.display = 'none';
+                }
+            }, 300);
+        }
     </script>
 </body>
 
