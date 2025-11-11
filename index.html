@@ -1,28 +1,19 @@
 <!-- xFeinschmecker | www.feinschmecker.dev -->
 
 <!DOCTYPE html>
-<html lang="en" style="visibility:hidden; background:black">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
 
     <script>
-        window.addEventListener('load', () => {
-            const el = document.documentElement;
-            el.style.visibility = 'visible';
-            el.style.background = '';
-            // Dispatch custom event to signal page is visible for animations
+        // Dispatch custom event to signal page is ready for animations
+        document.addEventListener('DOMContentLoaded', () => {
             window.dispatchEvent(new Event('pageVisible'));
         });
-
     </script>
     <noscript>
         <style>
-            html {
-                visibility: visible;
-                background: initial;
-            }
-
             .animate {
                 opacity: 1;
                 transform: translateY(0);
@@ -119,11 +110,21 @@
     <meta name="revisit-after" content="7 days">
     <link rel="canonical" href="https://fulo.life/">
 
+    <!-- Critical CSS - Inline to prevent flash -->
+    <style>
+        :root{--primary-color:#003366;--accent-color:#2563eb;--accent-color-dark:#1d4ed8;--text-base-color:#374151;--text-muted-color:#4b5563;--bg-light-gray-color:#f9fafb;--bg-primary-color:var(--primary-color);--bg-accent-color:var(--accent-color);--text-on-primary-color:#fff;--text-on-accent-color:#fff}
+        html{background:#003366}
+        body{margin:0;padding:0;font-family:Montserrat,sans-serif;background:#003366;color:#374151}
+        #main-header{position:fixed;top:0;left:0;right:0;z-index:50;background-color:transparent}
+        #header-logo-main{color:#fff}
+        #header-logo-accent{color:#2563eb}
+        #header-hamburger{color:#fff}
+        .header-nav-link{color:#e5e7eb;display:inline-block}
+        .hero{min-height:100vh;background-color:#003366;color:#fff;position:relative;display:flex;align-items:center;justify-content:center;padding-top:5rem;text-align:center}
+    </style>
+
     <!-- Styles -->
-    <link rel="preload" href="index.min.css?v=1e8ccc27" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="index.min.css?v=1e8ccc27">
-    </noscript>
+    <link rel="stylesheet" href="index.min.css?v=1e8ccc27">
 
 
     <!-- reCAPTCHA v3 -->
