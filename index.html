@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
 
     <!-- Preload Critical Fonts - Early for faster loading -->
-    <link rel="preload" href="fonts/montserrat-v30-latin-regular.woff2?v=74795056" as="font" type="font/woff2" crossorigin
-        fetchpriority="high">
+    <link rel="preload" href="fonts/montserrat-v30-latin-regular.woff2?v=74795056" as="font" type="font/woff2"
+        crossorigin fetchpriority="high">
     <link rel="preload" href="fonts/montserrat-v30-latin-700.woff2?v=0c556945" as="font" type="font/woff2" crossorigin
         fetchpriority="high">
 
@@ -36,7 +36,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.youtube.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://img.youtube.com https://i.ytimg.com; font-src 'self'; frame-src https://www.google.com https://www.youtube.com; connect-src https://www.google-analytics.com https://region1.google-analytics.com;">
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.youtube.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://img.youtube.com https://i.ytimg.com; font-src 'self'; frame-src https://www.google.com https://www.youtube.com; connect-src 'self' https://script.google.com https://www.google-analytics.com https://region1.google-analytics.com;">
     <title>FulO - Israel | Japan Business Matchmaking</title>
 
     <!-- SEO Language Tags -->
@@ -948,9 +948,9 @@
                 iframe.setAttribute('allowfullscreen', '');
 
                 // When iframe loads, fade it in
-                iframe.onload = function() {
+                iframe.onload = function () {
                     iframe.style.opacity = '1';
-                    
+
                     // Fade out the black screen
                     setTimeout(function () {
                         if (fader) {
