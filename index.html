@@ -7,9 +7,9 @@
     <meta charset="UTF-8">
 
     <!-- Preload Critical Fonts - Early for faster loading -->
-    <link rel="preload" href="fonts/montserrat-v30-latin-regular.woff2" as="font" type="font/woff2" crossorigin
+    <link rel="preload" href="fonts/montserrat-v30-latin-regular.woff2?v=74795056" as="font" type="font/woff2" crossorigin
         fetchpriority="high">
-    <link rel="preload" href="fonts/montserrat-v30-latin-700.woff2" as="font" type="font/woff2" crossorigin
+    <link rel="preload" href="fonts/montserrat-v30-latin-700.woff2?v=0c556945" as="font" type="font/woff2" crossorigin
         fetchpriority="high">
 
     <script>
@@ -36,7 +36,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google.com https://www.googletagmanager.com https://www.youtube.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://img.youtube.com; font-src 'self'; frame-src https://www.google.com https://www.youtube.com; connect-src https://www.google-analytics.com https://region1.google-analytics.com;">
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.youtube.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://img.youtube.com https://i.ytimg.com; font-src 'self'; frame-src https://www.google.com https://www.youtube.com; connect-src https://www.google-analytics.com https://region1.google-analytics.com;">
     <title>FulO - Israel | Japan Business Matchmaking</title>
 
     <!-- SEO Language Tags -->
@@ -46,11 +46,7 @@
     <link rel="alternate" hreflang="x-default" href="https://fulo.life/" />
 
     <!-- Preload Critical Resources -->
-    <link rel="preload" as="image" href="images/backgrounds/tel-aviv-night-800px.webp" fetchpriority="high">
     <link rel="preload" as="image" href="images/profiles/nadav-profile-512x740.webp" fetchpriority="high">
-    <!-- Preload Japanese Fonts -->
-    <link rel="preload" href="fonts/NotoSansCJKjp-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="fonts/NotoSansCJKjp-Bold.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/images/icons/favicon.svg">
@@ -442,9 +438,7 @@
                             </div>
                             <div id="video-fade" class="absolute inset-0"
                                 style="z-index:5; background:black; opacity:1; transition: opacity 500ms ease;"></div>
-                            <div id="yt-player"
-                                class="absolute inset-0 z-0 w-full h-full opacity-0 transition-opacity duration-300"
-                                style="pointer-events: none;"></div>
+                            <div id="video-container" class="absolute inset-0 w-full h-full"></div>
                         </div>
                     </div>
 
@@ -900,58 +894,77 @@
             </div>
         </div>
     </div>
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        var player;
-        function onYouTubeIframeAPIReady() {
-            var poster = document.getElementById('video-poster-overlay');
-            if (!poster) return;
+        (function () {
+            const poster = document.getElementById('video-poster-overlay');
+            const videoContainer = document.getElementById('video-container');
+            const fader = document.getElementById('video-fade');
+            if (!poster || !videoContainer) return;
 
+            // 1. Function to warm up the connection to YouTube
+            function warmUpYouTubeConnection() {
+                const preconnectUrls = [
+                    "https://www.youtube.com",
+                    "https://i.ytimg.com",
+                    "https://s.ytimg.com",
+                    "https://static.doubleclick.net"
+                ];
+
+                preconnectUrls.forEach(url => {
+                    const preconnectLink = document.createElement('link');
+                    preconnectLink.rel = 'preconnect';
+                    preconnectLink.href = url;
+                    document.head.appendChild(preconnectLink);
+                });
+            }
+
+            // 2. Intersection Observer to trigger the warm-up
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        warmUpYouTubeConnection();
+                        observer.disconnect(); // Run only once
+                    }
+                });
+            });
+
+            observer.observe(poster);
+
+            // 3. Keep the original click listener to load the video
             poster.addEventListener('click', function onClick() {
-                // Immediate feedback: fade poster with scale animation
+                // Immediate feedback: fade poster
                 poster.style.opacity = '0';
                 poster.style.transform = 'scale(0.95)';
                 poster.style.pointerEvents = 'none';
 
-                // Create the player
-                player = new YT.Player('yt-player', {
-                    videoId: 'LEocA6dLkCU',
-                    playerVars: {
-                        'autoplay': 1,
-                        'rel': 0,
-                        'modestbranding': 1,
-                        'playsinline': 1,
-                        'vq': 'hd1080'
-                    },
-                    events: {
-                        'onReady': onPlayerReady
-                    }
-                });
+                // Create the iframe
+                var iframe = document.createElement('iframe');
+                iframe.setAttribute('class', 'absolute inset-0 w-full h-full opacity-0 transition-opacity duration-300');
+                iframe.setAttribute('src', 'https://www.youtube.com/embed/LEocA6dLkCU?autoplay=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080');
+                iframe.setAttribute('title', 'YouTube video player');
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+                iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+                iframe.setAttribute('allowfullscreen', '');
+
+                // When iframe loads, fade it in
+                iframe.onload = function() {
+                    iframe.style.opacity = '1';
+                    
+                    // Fade out the black screen
+                    setTimeout(function () {
+                        if (fader) {
+                            fader.style.opacity = '0';
+                            setTimeout(function () { fader.style.display = 'none'; }, 500);
+                        }
+                        poster.style.display = 'none';
+                    }, 300);
+                };
+
+                videoContainer.appendChild(iframe);
+
             }, { once: true });
-        }
-
-        function onPlayerReady(event) {
-            var iframe = event.target.getIframe();
-            var fader = document.getElementById('video-fade');
-            var poster = document.getElementById('video-poster-overlay');
-
-            // The API is ready, and the video will start playing automatically
-            // Now handle the crossfade and reveal
-            if (iframe) {
-                iframe.style.opacity = '1';
-                iframe.style.pointerEvents = 'auto';
-            }
-
-            setTimeout(function () {
-                if (fader) {
-                    fader.style.opacity = '0';
-                    setTimeout(function () { fader.style.display = 'none'; }, 500);
-                }
-                if (poster) {
-                    poster.style.display = 'none';
-                }
-            }, 300);
-        }
+        })();
     </script>
 </body>
 
