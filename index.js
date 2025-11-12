@@ -94,6 +94,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const thankYouMessage = document.getElementById('thankYouMessage');
 
     if (contactForm) {
+        // Function to load reCAPTCHA script
+        const loadRecaptchaScript = () => {
+            if (document.querySelector('script[src*="recaptcha/api.js"]')) {
+                return; // Script already loaded or loading
+            }
+            const script = document.createElement('script');
+            script.src = "https://www.google.com/recaptcha/api.js?render=6LcEFmYrAAAAAEiA7b5PxpXHcpgWpO5P9HX8ZLVN";
+            document.head.appendChild(script);
+        };
+
+        // Add event listeners to form fields to load reCAPTCHA on interaction
+        const formFields = contactForm.querySelectorAll('input, textarea');
+        formFields.forEach(field => {
+            field.addEventListener('focus', loadRecaptchaScript, { once: true });
+        });
+
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             grecaptcha.ready(async function () {
