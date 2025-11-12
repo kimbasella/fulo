@@ -5,7 +5,7 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "build": "npm run build:js && npm run build:css",
+        "build": "npm run build:js && npm run build:css && node version.js",
         "build:js": "node build.js",
         "build:css": "tailwindcss -i index.css -o index.min.css --minify",
         "watch:css": "tailwindcss -i index.css -o index.min.css --watch",
