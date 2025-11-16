@@ -2051,6 +2051,19 @@ th {
         width: 100%;
 }
 
+/* Responsive play icon sizing */
+#video-poster-overlay svg {
+        width: 56px;
+        height: 56px;
+}
+
+@media (min-width: 768px) {
+        #video-poster-overlay svg {
+                width: 96px;
+                height: 96px;
+        }
+}
+
 @media (min-width: 640px) {
         #cookie-popup .flex {
                 flex-direction: row;

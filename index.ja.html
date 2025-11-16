@@ -76,46 +76,146 @@
     <meta property="twitter:url" content="https://fulo.life/">
     <meta property="twitter:title" content="FulO - イスラエルと日本のビジネスマッチング">
     <meta property="twitter:description"
-        content="FulOは、イスラエルの革新技術と日本市場を繋ぎ、成長と国際的な成功を実現する戦略的パートナーシップを築きます。ビジネスマッチング、市場参入、異文化間ビジネス展開の専門サポートをします">
+        content="FulOは、イスラエルの革新技術と日本市場を繋ぎ、成長と国際的な成功を実現する戦略的パートナーシップを築きます。ビジネスマッチング、市場参入、異文化間ビジネス展開の専門サポートをします。">
     <meta property="twitter:image" content="https://fulo.life/images/og/fulo-og.png">
 
     <!-- Additional Meta Tags -->
     <meta name="language" content="Japanese">
     <meta name="revisit-after" content="7 days">
+    <link rel="canonical" href="https://fulo.life/">
+
+    <!-- Critical CSS - Inline to prevent flash -->
+    <style>
+        :root {
+            --primary-color: #003366;
+            --accent-color: #2563eb;
+            --accent-color-dark: #1d4ed8;
+            --text-base-color: #374151;
+            --text-muted-color: #4b5563;
+            --bg-light-gray-color: #f9fafb;
+            --bg-primary-color: var(--primary-color);
+            --bg-accent-color: var(--accent-color);
+            --text-on-primary-color: #fff;
+            --text-on-accent-color: #fff
+        }
+
+        html {
+            background: #003366
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Montserrat, sans-serif;
+            background: #003366;
+            color: #374151
+        }
+
+        #main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background-color: transparent
+        }
+
+        #header-logo-main {
+            color: #fff
+        }
+
+        #header-logo-accent {
+            color: #2563eb
+        }
+
+        #header-hamburger {
+            color: #fff
+        }
+
+        .header-nav-link {
+            color: #e5e7eb;
+            display: inline-block
+        }
+
+        .hero {
+            min-height: 100vh;
+            background-color: #003366;
+            color: #fff;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 5rem;
+            text-align: center
+        }
+    </style>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="index.min.css?v=4c537cee">
+    <link rel="stylesheet" href="index.min.css?v=96cec495">
 
 
     <!-- reCAPTCHA v3 -->
+    <!-- <script>
+        function loadRecaptcha() {
+            const script = document.createElement('script');
+            script.src = 'https://www.google.com/recaptcha/api.js';
+            script.async = true;
+            document.head.appendChild(script);
+        }
+        
+        // Load on user interaction
+        document.addEventListener('click', loadRecaptcha, { once: true });
+    </script> -->
 
 
-    <!-- Schema.org -->
+    <!-- Schema.org Japanese-->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "FulO",
-      "url": "https://fulo.life",
-      "logo": "https://fulo.life/images/icons/favicon.svg",
-      "description": "FulO connects Israeli innovation with Japanese markets, creating strategic partnerships that drive growth and international success.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Tel Aviv",
-        "addressCountry": "Israel"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer service",
-        "email": "info@fulo.life",
-        "availableLanguage": ["English", "Hebrew"]
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/fulo",
-        "https://twitter.com/fulo_life"
-      ]
-    }
-    </script>
+                                                {
+                                                    "@context": "https://schema.org",
+                                                    "@type": "VideoObject",
+                                                    "name": "MultiKol の日本市場向けローカライズ ― 音声バイオメトリクス",
+                                                    "description": "MultiKol（音声バイオメトリクス）のマーケティング資料を日本市場向けにローカライズした事例紹介動画です。脚本、ペーシング、画面上のコピーを含む各種要素の最適化プロセスをご覧いただけます。",
+                                                    "thumbnailUrl": "https://img.youtube.com/vi/LEocA6dLkCU/maxresdefault.jpg",
+                                                    "uploadDate": "2024-03-02T00:00:00Z",
+                                                    "duration": "PT2M26S",
+                                                    "url": "https://fulo.life/ja",
+                                                    "contentUrl": "https://www.youtube.com/watch?v=LEocA6dLkCU",
+                                                    "embedUrl": "https://www.youtube.com/embed/LEocA6dLkCU",
+                                                    "publisher": {
+                                                        "@type": "Organization",
+                                                        "name": "FulO",
+                                                        "logo": {
+                                                            "@type": "ImageObject",
+                                                            "url": "https://fulo.life/images/icons/favicon-256x256.png"
+                                                        }
+                                                    }
+                                                }
+                                            </script>
+    <script type="application/ld+json">
+                                                {
+                                                    "@context": "https://schema.org",
+                                                    "@type": "Organization",
+                                                    "name": "FulO",
+                                                    "url": "https://fulo.life/ja",
+                                                    "logo": "https://fulo.life/images/icons/favicon.svg",
+                                                    "description": "FulOは、イスラエルの革新技術と日本市場を繋ぎ、成長と国際的な成功を実現する戦略的パートナーシップを築きます。",
+                                                    "address": {
+                                                        "@type": "PostalAddress",
+                                                        "addressLocality": "テルアビブ",
+                                                        "addressCountry": "イスラエル"
+                                                    },
+                                                    "contactPoint": {
+                                                        "@type": "ContactPoint",
+                                                        "contactType": "カスタマーサポート",
+                                                        "email": "info@fulo.life",
+                                                        "availableLanguage": ["日本語","英語","ヘブライ語"]
+                                                    },
+                                                    "sameAs": [
+                                                    "https://www.linkedin.com/company/fulo",
+                                                    "https://twitter.com/fulo_life"
+                                                    ]
+                                                }
+                                            </script>
 
     <!-- Google Analytics (GA4) -->
     <script>
@@ -126,7 +226,6 @@
                 script.src = 'https://www.googletagmanager.com/gtag/js?id=G-KGNMBV51TM';
                 script.async = true;
                 document.head.appendChild(script);
-
                 window.dataLayer = window.dataLayer || [];
                 function gtag() { dataLayer.push(arguments); }
                 gtag('js', new Date());
@@ -145,7 +244,6 @@
             font-family: 'Noto Sans JP', sans-serif;
         }
     </style>
-
 </head>
 
 <body class="antialiased text-base">
@@ -282,6 +380,7 @@
                             </p>
                             <div class="w-16 h-px bg-[var(--accent-color)] mx-auto mt-6 mb-0"></div>
                         </div>
+
                         <div
                             class="service-card bg-white/95 backdrop-blur-sm p-8 rounded-xl shadow-lg text-center transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-1.5 hover:bg-white animate delay-1 h-full flex flex-col justify-between">
                             <div class="flex justify-center items-center mb-6 text-[var(--accent-color)]">
@@ -322,6 +421,42 @@
                             <div class="w-16 h-px  bg-[var(--accent-color)] mx-auto mt-6 mb-0"></div>
                         </div>
                     </div>
+
+                    <!-- Localization in Action Section -->
+                    <div class="pt-20 text-center">
+                        <h3 class="text-3xl font-semibold text-[var(--primary-color)] mb-6">ローカライズ事例</h3>
+                        <p class="text-lg text-[var(--text-muted-color)] max-w-3xl mx-auto leading-relaxed mb-10">
+                            事例紹介:
+                            <a href="https://multikol.ai/" target="_blank" rel="noopener noreferrer"
+                                class="text-[var(--accent-color)] hover:underline">
+                                MultiKol -Voice Biometerics
+                            </a>
+                            (日本市場向けPR動画)
+                        </p>
+                        <div id="video-root" class="relative max-w-4xl mx-auto rounded-lg overflow-hidden shadow-2xl"
+                            style="aspect-ratio: 16 / 9; padding-top: 56.25%;">
+
+                            <!-- サムネイル画像と再生ボタン -->
+                            <div id="video-poster-overlay" role="button"
+                                aria-label="「MultiKol – Voice Biometerics」紹介動画を再生"
+                                class="absolute inset-0 z-10 flex cursor-pointer items-center justify-center bg-cover bg-center transition-all duration-500"
+                                style="background-image: url('https://img.youtube.com/vi/LEocA6dLkCU/maxresdefault.jpg'); background-size: cover; background-position: center; transition: opacity 500ms ease, transform 500ms ease;">
+
+                                <!-- 再生アイコン -->
+                                <svg class="text-black" viewBox="0 0 20 20">
+                                    <circle cx="10" cy="10" r="8" fill="currentColor" fill-opacity="1" />
+                                    <path d="M9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                        fill="var(--accent-color)" />
+                                </svg>
+                            </div>
+
+                            <!-- フェードエフェクト -->
+                            <div id="video-fade" class="absolute inset-0"
+                                style="z-index:5; background:black; opacity:1; transition: opacity 500ms ease;"></div>
+                            <div id="video-container" class="absolute inset-0 w-full h-full"></div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
@@ -761,6 +896,78 @@
             </div>
         </div>
     </div>
+    <script>
+        (function () {
+            const poster = document.getElementById('video-poster-overlay');
+            const videoContainer = document.getElementById('video-container');
+            const fader = document.getElementById('video-fade');
+            if (!poster || !videoContainer) return;
+
+            // 1. Function to warm up the connection to YouTube
+            function warmUpYouTubeConnection() {
+                const preconnectUrls = [
+                    "https://www.youtube.com",
+                    "https://i.ytimg.com",
+                    "https://s.ytimg.com",
+                    "https://static.doubleclick.net"
+                ];
+
+                preconnectUrls.forEach(url => {
+                    const preconnectLink = document.createElement('link');
+                    preconnectLink.rel = 'preconnect';
+                    preconnectLink.href = url;
+                    document.head.appendChild(preconnectLink);
+                });
+            }
+
+            // 2. Intersection Observer to trigger the warm-up
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        warmUpYouTubeConnection();
+                        observer.disconnect(); // Run only once
+                    }
+                });
+            });
+
+            observer.observe(poster);
+
+            // 3. Keep the original click listener to load the video
+            poster.addEventListener('click', function onClick() {
+                // Immediate feedback: fade poster
+                poster.style.opacity = '0';
+                poster.style.transform = 'scale(0.95)';
+                poster.style.pointerEvents = 'none';
+
+                // Create the iframe
+                var iframe = document.createElement('iframe');
+                iframe.setAttribute('class', 'absolute inset-0 w-full h-full opacity-0 transition-opacity duration-300');
+                iframe.setAttribute('src', 'https://www.youtube.com/embed/LEocA6dLkCU?autoplay=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080');
+                iframe.setAttribute('title', 'YouTube video player');
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+                iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+                iframe.setAttribute('allowfullscreen', '');
+
+                // When iframe loads, fade it in
+                iframe.onload = function () {
+                    iframe.style.opacity = '1';
+
+                    // Fade out the black screen
+                    setTimeout(function () {
+                        if (fader) {
+                            fader.style.opacity = '0';
+                            setTimeout(function () { fader.style.display = 'none'; }, 500);
+                        }
+                        poster.style.display = 'none';
+                    }, 300);
+                };
+
+                videoContainer.appendChild(iframe);
+
+            }, { once: true });
+        })();
+    </script>
 </body>
 
 </html>
