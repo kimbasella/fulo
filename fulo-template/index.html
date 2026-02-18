@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="color-scheme" content="dark light" />
+        <meta name="theme-color" content="#0b1220" id="theme-color" />
+        <meta
+            name="description"
+            content="A clean, fast, and accessible landing page template with a dark-first theme toggle."
+        />
+        <title>Fulo Template — Business Matchmaking</title>
+        <link rel="stylesheet" href="styles.min.css" />
+    </head>
+    <body>
+        <a class="skip-link" href="#main">Skip to main content</a>
+
+        <header>
+            <div class="container nav">
+                <a href="#home" class="logo" aria-label="Fulo template home">
+                    Ful<span>O</span>
+                </a>
+                <nav class="nav-links" aria-label="Main navigation">
+                    <a href="#services">Services</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <a
+                        href="index.ja.html"
+                        class="lang-toggle"
+                        aria-label="View Japanese version"
+                        >日本語</a
+                    >
+                </nav>
+                <div class="nav-actions">
+                    <button
+                        class="theme-toggle"
+                        type="button"
+                        id="themeToggle"
+                        aria-pressed="true"
+                    >
+                        <span data-icon aria-hidden="true">🌙</span>
+                        <span class="toggle-label">Dark</span>
+                    </button>
+                    <button
+                        class="hamburger"
+                        type="button"
+                        id="navToggle"
+                        aria-label="Toggle mobile menu"
+                        aria-expanded="false"
+                        aria-controls="mobileNav"
+                    >
+                        ☰
+                    </button>
+                </div>
+            </div>
+            <div
+                class="mobile-nav"
+                id="mobileNav"
+                aria-label="Mobile navigation"
+            >
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="index.ja.html">日本語</a>
+            </div>
+        </header>
+
+        <main id="main">
+            <section class="hero" id="home">
+                <div class="container hero-content">
+                    <p class="eyebrow">Israel · Japan Business Matchmaking</p>
+                    <h1>Bridge innovation with global opportunity.</h1>
+                    <p>
+                        Use this template to showcase your services, highlight
+                        expertise, and convert visitors with a clear call to
+                        action.
+                    </p>
+                    <a class="cta" href="#contact">Get in touch</a>
+                </div>
+            </section>
+
+            <section id="services">
+                <div class="container">
+                    <h2 class="section-title">Services</h2>
+                    <p class="section-subtitle">
+                        Clear, focused offerings that are easy to customize.
+                    </p>
+                    <div class="grid grid-3">
+                        <article class="card">
+                            <h3>Business Matchmaking</h3>
+                            <p>
+                                Connect with trusted partners to expand across
+                                markets and unlock new opportunities.
+                            </p>
+                            <div class="accent-divider"></div>
+                        </article>
+                        <article class="card">
+                            <h3>Go-to-Market Strategy</h3>
+                            <p>
+                                Launch in new regions with localization,
+                                positioning, and regulatory guidance.
+                            </p>
+                            <div class="accent-divider"></div>
+                        </article>
+                        <article class="card">
+                            <h3>Strategic Advisory</h3>
+                            <p>
+                                Navigate cross-cultural business with expert
+                                support from planning to execution.
+                            </p>
+                            <div class="accent-divider"></div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about">
+                <div class="container about">
+                    <div>
+                        <h2 class="section-title" style="text-align: left">
+                            About
+                        </h2>
+                        <p class="section-subtitle" style="text-align: left">
+                            Replace this copy with your story, credentials, and
+                            differentiators.
+                        </p>
+                        <p>
+                            This template is optimized for performance and
+                            accessibility. Swap in your own imagery, update the
+                            brand colors, and edit the text content to match
+                            your organization.
+                        </p>
+                    </div>
+                    <div
+                        class="about-visual"
+                        role="img"
+                        aria-label="City skyline background"
+                    ></div>
+                </div>
+            </section>
+
+            <section id="contact">
+                <div class="container">
+                    <h2 class="section-title">Contact</h2>
+                    <p class="section-subtitle">
+                        Simple, fast, and ready for your form handler.
+                    </p>
+                    <form class="contact-card" aria-label="Contact form">
+                        <div>
+                            <label for="name">Name</label>
+                            <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                autocomplete="name"
+                                placeholder="Jane Doe"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                autocomplete="email"
+                                placeholder="jane@company.com"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label for="message">Message</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="4"
+                                placeholder="Tell us about your goals..."
+                                required
+                            ></textarea>
+                        </div>
+                        <button type="submit">Send message</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <small
+                    >© <span id="year"></span> Fulo Template. All rights
+                    reserved.</small
+                >
+            </div>
+        </footer>
+
+        <script src="script.min.js" defer></script>
+    </body>
+</html>
