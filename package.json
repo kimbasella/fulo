@@ -1,31 +1,31 @@
 {
-    "name": "fulo-website",
-    "version": "1.0.0",
-    "description": "FulO - Israel | Japan Business Matchmaking Website",
-    "main": "index.js",
-    "type": "module",
-    "scripts": {
-        "build": "npm run build:js && npm run build:css && node version.js",
-        "build:js": "node build.js",
-        "build:css": "tailwindcss -i index.css -o index.min.css --minify",
-        "watch:css": "tailwindcss -i index.css -o index.min.css --watch",
-        "watch:js": "node build.js --watch",
-        "serve": "npx serve -l 3000",
-        "deploy": "git push client-origin clean-production:production"
-    },
-    "devDependencies": {
-        "autoprefixer": "^10.4.17",
-        "esbuild": "^0.20.1",
-        "postcss": "^8.4.35",
-        "tailwindcss": "^3.4.1"
-    },
-    "dependencies": {
-        "serve": "^14.2.3"
-    },
-    "author": "Nadav Sella",
-    "license": "UNLICENSED",
-    "private": true,
-    "engines": {
-        "node": ">=18.0.0"
-    }
+  "name": "fulo-website",
+  "version": "1.0.0",
+  "description": "FulO - Israel | Japan Business Matchmaking Website",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && node version.js",
+    "build:js": "node build.js",
+    "build:css": "tailwindcss -i index.css -o index.min.css --minify",
+    "watch:css": "tailwindcss -i index.css -o index.min.css --watch",
+    "watch:js": "node build.js --watch",
+    "serve": "npx serve -l 3000",
+    "deploy": "git push client-origin clean-production:production"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.17",
+    "esbuild": "^0.20.1",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "serve": "^14.2.3"
+  },
+  "author": "Nadav Sella",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }
