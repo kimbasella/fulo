@@ -66,6 +66,14 @@
         <link
             rel="preload"
             as="image"
+            href="images/backgrounds/tel-aviv-night-1280px.webp"
+            imagesrcset="images/backgrounds/tel-aviv-night-800px.webp 800w, images/backgrounds/tel-aviv-night-1280px.webp 1280w, images/backgrounds/tel-aviv-night-1920px.webp 1920w"
+            imagesizes="100vw"
+            fetchpriority="high"
+        />
+        <link
+            rel="preload"
+            as="image"
             href="images/profiles/nadav-profile-512x740.webp"
             fetchpriority="high"
         />
@@ -217,12 +225,12 @@
                 "@type": "VideoObject",
                 "name": "Japanese Market Localization for MultiKol - Voice Biometrics",
                 "description": "A case study video demonstrating the localization of MultiKol - Voice Biometrics' marketing materials for the Japanese market, including script, pacing, and on-screen copy.",
-                "thumbnailUrl": "https://img.youtube.com/vi/LEocA6dLkCU/maxresdefault.jpg",
-                "uploadDate": "2024-03-02T00:00:00Z",
+                "thumbnailUrl": "https://img.youtube.com/vi/q-NQUTi0KZ0/maxresdefault.jpg",
+                "uploadDate": "2024-07-30T00:00:00Z",
                 "duration": "PT2M26S",
                 "url": "https://fulo.life/",
-                "contentUrl": "https://www.youtube.com/watch?v=LEocA6dLkCU",
-                "embedUrl": "https://www.youtube.com/embed/LEocA6dLkCU",
+                "contentUrl": "https://www.youtube.com/watch?v=q-NQUTi0KZ0",
+                "embedUrl": "https://www.youtube.com/embed/q-NQUTi0KZ0",
                 "publisher": {
                     "@type": "Organization",
                     "name": "FulO",
@@ -454,6 +462,7 @@
                     aria-label="Home"
                     tabindex="-1"
                     class="hero relative min-h-screen flex items-center justify-center text-white pt-20"
+                    style="background-color: #0b1320"
                 >
                     <picture
                         class="absolute inset-0 w-full h-full object-cover z-0"
@@ -486,6 +495,8 @@
                             aria-hidden="true"
                             width="1920"
                             height="1080"
+                            fetchpriority="high"
+                            decoding="async"
                         />
                     </picture>
                     <div
@@ -734,7 +745,7 @@
                                     aria-label="Play MultiKol - Voice Biometrics localization video"
                                     class="absolute inset-0 z-10 flex cursor-pointer items-center justify-center bg-cover bg-center transition-all duration-500"
                                     style="
-                                        background-image: url(&quot;https://img.youtube.com/vi/LEocA6dLkCU/maxresdefault.jpg&quot;);
+                                        background-image: url(&quot;https://img.youtube.com/vi/q-NQUTi0KZ0/maxresdefault.jpg&quot;);
                                         background-size: cover;
                                         background-position: center;
                                         transition:
@@ -1767,7 +1778,7 @@
                         );
                         iframe.setAttribute(
                             "src",
-                            "https://www.youtube.com/embed/LEocA6dLkCU?autoplay=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080",
+                            "https://www.youtube.com/embed/q-NQUTi0KZ0?autoplay=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080",
                         );
                         iframe.setAttribute("title", "YouTube video player");
                         iframe.setAttribute("frameborder", "0");
